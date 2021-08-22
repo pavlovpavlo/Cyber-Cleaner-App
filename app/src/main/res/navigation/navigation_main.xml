@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/phone_booster_fragment"
+    android:id="@+id/navigation_main">
+
+    <fragment
+        android:id="@+id/phone_booster_fragment"
+        android:name="com.cleaner.cybercleanerapp.ui.phone_booster.PhoneBoosterFragment"
+        tools:layout="@layout/phone_booster_fragment"
+        android:label="phone_booster_fragment" />
+    <fragment
+        android:id="@+id/battery_saver_fragment"
+        android:name="com.cleaner.cybercleanerapp.ui.battery_saver.BatterySaverFragment"
+        tools:layout="@layout/battery_saver_fragment"
+        android:label="battery_saver_fragment" />
+    <fragment
+        android:id="@+id/cpu_cooler_fragment"
+        android:name="com.cleaner.cybercleanerapp.ui.cpu_cooler.CPUCoolerFragment"
+        tools:layout="@layout/cpu_cooler_fragment"
+        android:label="c_p_u_cooler_fragment" />
+    <fragment
+        android:id="@+id/junk_cleaner_fragment"
+        android:name="com.cleaner.cybercleanerapp.ui.junk_cleaner.JunkCleanerFragment"
+        tools:layout="@layout/junk_cleaner_fragment"
+        android:label="junk_cleaner_fragment" />
+
+</navigation>
