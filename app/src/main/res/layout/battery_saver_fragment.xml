@@ -4,89 +4,179 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
     android:orientation="vertical"
-    tools:context=".ui.battery_saver.BatterySaverFragment">
+    tools:context=".ui.phone_booster.PhoneBoosterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="26dp"
             android:background="@drawable/bg_gradient_item"
+            android:includeFontPadding="false"
             android:paddingTop="16dp"
             android:paddingBottom="46dp"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_circle_1"
+                android:layout_width="@dimen/first_circle_size"
+                android:layout_height="@dimen/first_circle_size"
+                android:src="@drawable/circle_1_fiol"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
             <LinearLayout
-                android:layout_width="272dp"
-                android:layout_height="272dp"
-                android:background="@drawable/circle_1_fiol"
+                android:id="@+id/linearLayout"
+                android:layout_width="@dimen/first_circle_size"
+                android:layout_height="@dimen/first_circle_size"
                 android:gravity="center"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="240dp"
-                    android:layout_height="240dp"
+                    android:layout_width="@dimen/second_circle_size"
+                    android:layout_height="@dimen/second_circle_size"
                     android:background="@drawable/circle_1_fiol"
                     android:gravity="center"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                        android:id="@+id/circularProgressBar"
-                        android:layout_width="208dp"
-                        android:layout_height="208dp"
-                        app:cpb_background_progressbar_color="#66FFFFFF"
-                        app:cpb_background_progressbar_width="40dp"
-                        app:cpb_progress="40"
-                        app:cpb_progress_direction="to_right"
-                        app:cpb_progress_max="100"
-                        app:cpb_progressbar_color="#AC69FF"
-                        app:cpb_progressbar_width="40dp"
-                        app:cpb_round_border="true"
+                    <cn.septenary.ui.widget.GradientProgressBar
+                        android:id="@+id/bar"
+                        android:layout_width="@dimen/progress_bar_size"
+                        android:layout_height="@dimen/progress_bar_size"
+                        app:anim_duration="800"
+                        app:border_background="#66FFFFFF"
+                        app:border_width="30dp"
+                        app:end_color="#008000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:progress="0"
+                        app:progress_max="100"
+                        app:rotate="-90"
+                        app:start_color="#38B000" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="255dp"
-            android:layout_height="53dp"
-            android:background="@drawable/main_btn_bg_black_stroke"
-            android:clickable="true"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_form"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ubuntu_regular"
-                android:text="Optimize"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+            <LinearLayout
+                android:id="@+id/btn_start"
+                android:layout_width="255dp"
+                android:layout_height="53dp"
+                android:background="@drawable/main_btn_bg_black_stroke"
+                android:clickable="true"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:text="Optimize"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_fire_white" />
+            </LinearLayout>
 
             <ImageView
+                android:id="@+id/image_blick"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:src="@drawable/ic_fire_white" />
-        </LinearLayout>
+                android:layout_height="0dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:src="@drawable/ic_shine"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/btn_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="175dp"
+        android:layout_height="@dimen/battery_dialog_size"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/ic_middle_block"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/booster_icon_size"
+                android:layout_height="@dimen/booster_icon_size"
+                android:src="@drawable/ic_block_icon__5_" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/junk_title_margin"
+                android:fontFamily="@font/ubuntu_medium"
+                android:includeFontPadding="false"
+                android:text="1h 30m"
+                android:textColor="@color/white"
+                android:textSize="@dimen/booster_title_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:includeFontPadding="false"
+                android:text="charging time remaning"
+                android:textColor="@color/white"
+                android:textSize="@dimen/booster_subtitle_text" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>

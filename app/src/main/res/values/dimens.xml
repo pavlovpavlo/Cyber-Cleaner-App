@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="first_circle_size">212dp</dimen>
+    <dimen name="second_circle_size">190dp</dimen>
+    <dimen name="progress_bar_size">158dp</dimen>
+    <dimen name="booster_title_text">18sp</dimen>
+    <dimen name="booster_subtitle_text">10sp</dimen>
+    <dimen name="booster_count_text">9sp</dimen>
+    <dimen name="booster_icon_size">35dp</dimen>
+    <dimen name="booster_dialog">135dp</dimen>
+    <dimen name="booster_dialog_line_margin">20.5dp</dimen>
+    <dimen name="battery_dialog_size">113dp</dimen>
+    <dimen name="progress_container_bottom_margin">36dp</dimen>
+    <dimen name="progress_container_top_margin">10dp</dimen>
+    <dimen name="junk_dialog_size">99dp</dimen>
+    <dimen name="junk_dialog_top">8dp</dimen>
+    <dimen name="junk_title_margin">5dp</dimen>
+    <dimen name="required_size">16dp</dimen>
+    <dimen name="required_text_size">8sp</dimen>
+    <dimen name="progress_main_text">20sp</dimen>
+</resources>
