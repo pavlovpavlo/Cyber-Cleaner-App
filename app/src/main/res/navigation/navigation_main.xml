@@ -26,4 +26,10 @@
         tools:layout="@layout/junk_cleaner_fragment"
         android:label="junk_cleaner_fragment" />
 
+    <fragment
+        android:id="@+id/complete_fragment"
+        android:name="com.cleaner.cybercleanerapp.ui.optimization_complete.CompleteFragment"
+        tools:layout="@layout/complete_fragment"
+        android:label="complete_fragment" />
+
 </navigation>

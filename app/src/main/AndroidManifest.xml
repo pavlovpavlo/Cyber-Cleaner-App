@@ -19,7 +19,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CyberCleanerApp">
-        <activity android:name=".ui.optimization_complete.OptimizationCompleteActivity"></activity>
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -94,6 +94,7 @@
             android:layout_marginEnd="37dp"/>
 
         <TextView
+            android:id="@+id/count_optimization_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/junk_dialog_top"
@@ -104,6 +105,7 @@
             android:textSize="@dimen/complete_title_text" />
 
         <TextView
+            android:id="@+id/optimization_second_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
