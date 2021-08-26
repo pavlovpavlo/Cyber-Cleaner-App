@@ -12,6 +12,7 @@ import android.os.Build;
 public class MemStat {
     private long mTotalMemory;
     private long mUsedMemory;
+    private long mAvailMemory;
    // private long mUsedMemory;
     private static final double B_TO_GB = 1024d * 1024d * 1024d;
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -21,6 +22,7 @@ public class MemStat {
         am.getMemoryInfo(memInfo);
 
         mTotalMemory = memInfo.totalMem;
+        mAvailMemory= memInfo.availMem;
         mUsedMemory = (memInfo.totalMem - memInfo.availMem);
     }
 
@@ -37,7 +39,7 @@ public class MemStat {
     }
 
     public int getProcentMemory() {
-        return ((int) (int)(mUsedMemory * 100 / mTotalMemory));
+        return ((int) (int)(mAvailMemory * 100 / mTotalMemory));
     }
 
 
