@@ -31,7 +31,7 @@
         app:anim_duration="500"
         app:border_background="#66FFFFFF"
         app:border_width="30dp"
-        app:end_color="#008000"
+        app:end_color="#E50000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         app:progress="0"
         app:progress_max="100"
         app:rotate="-90"
-        app:start_color="#3500B0" />
+        app:start_color="#FF9900" />
 
     <cn.septenary.ui.widget.GradientProgressBar
         android:id="@+id/bar3"

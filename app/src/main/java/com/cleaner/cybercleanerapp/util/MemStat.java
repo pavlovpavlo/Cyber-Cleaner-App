@@ -46,4 +46,11 @@ public class MemStat {
     public float getUsedMemory() {
         return ((int) (mUsedMemory / B_TO_GB * 100)) / 100.0f;
     }
+
+    public long getTotalMemoryLong() {
+        return ((int) (mTotalMemory));
+    }
+    public long getUsedMemoryLong() {
+        return ((int) (mUsedMemory ));
+    }
 }

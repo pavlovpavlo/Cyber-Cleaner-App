@@ -3,6 +3,9 @@ package com.cleaner.cybercleanerapp.MyView;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +35,7 @@ public class CircleView extends ConstraintLayout {
         init(context);
     }
 
-    public void setProgresscolor(int progress,boolean anim) {
+    public void setProgressСolor(int progress,boolean anim) {
         if (progress<=33){
             bar3.setVisibility(View.GONE);
             bar4.setVisibility(View.GONE);
@@ -50,6 +53,14 @@ public class CircleView extends ConstraintLayout {
             bar4.setProgress(progress,anim);}
     }
 
+    public void startAnim(int time){
+         RotateAnimation r = new RotateAnimation(0, 360,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        r.setDuration(500);
+        r.setInterpolator(new LinearInterpolator());
+        r.setRepeatCount(time);
+        rootView.startAnimation(r);
+    }
 
     private void init(Context context) {
         //do setup work here

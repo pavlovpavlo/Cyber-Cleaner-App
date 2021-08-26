@@ -204,6 +204,7 @@
                 android:src="@drawable/ic_seting_icon" />
 
             <TextView
+                android:id="@+id/text_r_process"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/junk_title_margin"
@@ -235,6 +236,7 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
+                android:id="@+id/memory_text_p"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/junk_title_margin"
