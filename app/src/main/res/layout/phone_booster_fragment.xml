@@ -57,48 +57,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.progress.progressview.ProgressView
-                        android:id="@+id/progressView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:progressView_autoAnimate="true"
-                        app:progressView_colorGradientEnd="#008000"
-                        app:progressView_colorGradientStart="#38B000"
-                        app:progressView_duration="150"
-                        app:progressView_max="100"
-                        app:progressView_min="0"
-                        app:pvDirection="fromLeft"
-                        app:pvProgress="1"
-                        app:pvShape="circle" />
-
-                    <cn.septenary.ui.widget.GradientProgressBar
-                        android:id="@+id/bar"
-                        android:layout_width="@dimen/progress_bar_size"
-                        android:layout_height="@dimen/progress_bar_size"
-                        android:visibility="gone"
-                        app:anim_duration="500"
-                        app:border_background="#66FFFFFF"
-                        app:border_width="30dp"
-                        app:end_color="#008000"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:progress="0"
-                        app:progress_max="100"
-                        app:rotate="-90"
-                        app:start_color="#38B000" />
-
                     <com.cleaner.cybercleanerapp.MyView.CircleView
                         android:id="@+id/bar_new"
                         android:layout_width="@dimen/progress_bar_size"
@@ -116,10 +74,10 @@
                         android:text="100%"
                         android:textColor="@color/white"
                         android:textSize="@dimen/progress_main_text"
-                        app:layout_constraintBottom_toBottomOf="@+id/bar"
-                        app:layout_constraintEnd_toEndOf="@+id/bar"
-                        app:layout_constraintStart_toStartOf="@+id/bar"
-                        app:layout_constraintTop_toTopOf="@+id/bar" />
+                        app:layout_constraintBottom_toBottomOf="@+id/bar_new"
+                        app:layout_constraintEnd_toEndOf="@+id/bar_new"
+                        app:layout_constraintStart_toStartOf="@+id/bar_new"
+                        app:layout_constraintTop_toTopOf="@+id/bar_new" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 

@@ -52,6 +52,12 @@ public class CircleView extends ConstraintLayout {
             bar4.setVisibility(View.VISIBLE);
             bar4.setProgress(progress,anim);}
     }
+    public void optimizationComplete(int progress,boolean anim) {
+            bar3.setVisibility(View.GONE);
+            bar4.setVisibility(View.GONE);
+            bar2.setVisibility(View.VISIBLE);
+            bar2.setProgress(progress,anim);
+    }
 
     public void startAnim(int time){
          RotateAnimation r = new RotateAnimation(0, 360,

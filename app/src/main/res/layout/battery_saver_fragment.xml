@@ -55,22 +55,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <cn.septenary.ui.widget.GradientProgressBar
-                        android:id="@+id/bar"
+                    <com.cleaner.cybercleanerapp.MyView.CircleView
+                        android:id="@+id/bar_new"
                         android:layout_width="@dimen/progress_bar_size"
                         android:layout_height="@dimen/progress_bar_size"
-                        app:anim_duration="800"
-                        app:border_background="#66FFFFFF"
-                        app:border_width="30dp"
-                        app:end_color="#008000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:progress="0"
-                        app:progress_max="100"
-                        app:rotate="-90"
-                        app:start_color="#38B000" />
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
@@ -156,6 +148,7 @@
                 android:src="@drawable/ic_block_icon__5_" />
 
             <TextView
+                android:id="@+id/timeBattery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/junk_title_margin"

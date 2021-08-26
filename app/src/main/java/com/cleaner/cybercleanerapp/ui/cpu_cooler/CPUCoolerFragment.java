@@ -7,6 +7,12 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.os.BatteryManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,93 +25,120 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.cleaner.cybercleanerapp.R;
+import com.cleaner.cybercleanerapp.ui.base.BaseFragment;
+import com.cleaner.cybercleanerapp.ui.base.BaseFragmentInterface;
+import com.cleaner.cybercleanerapp.util.MemStat;
+import com.cleaner.cybercleanerapp.util.SingletonClassApp;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 
 import cn.septenary.ui.widget.GradientProgressBar;
+import eu.chainfire.libsuperuser.Shell;
 
-public class CPUCoolerFragment extends Fragment {
-    private CPUCoolerViewModel mViewModel;
-    private ImageView img_crcle;
+import static android.content.Context.ACTIVITY_SERVICE;
+import static android.content.Context.BATTERY_SERVICE;
+
+public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInterface {
     private View view_root;
-    private GradientProgressBar bar;
-    private LinearLayout button;
-    private ConstraintLayout btn_form;
-    private ImageView image_blick;
+    private TextView cpuTempText;
+    private int basicProcent;
+    private final float MAX_CPU_TEMP = 42.0f;
+    private float cpuTemp;
 
-    public static CPUCoolerFragment newInstance() {
-        return new CPUCoolerFragment();
-    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view_root=inflater.inflate(R.layout.cpu_cooler_fragment, container, false);
-        ImageView iv = view_root.findViewById(R.id.image_circle_1);
-        ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
-                iv,
-                PropertyValuesHolder.ofFloat("scaleX", 0.9f),
-                PropertyValuesHolder.ofFloat("scaleY", 0.9f));
-        scaleDown.setDuration(500);
-        scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
-        scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
-        scaleDown.start();
-
-        initView();
-
+        view_root = inflater.inflate(R.layout.cpu_cooler_fragment, container, false);
+        onAttachFragment(view_root, this);
         return view_root;
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CPUCoolerViewModel.class);
-        // TODO: Use the ViewModel
+
+    @SuppressLint("SetTextI18n")
+    private void setData() {
+        setMainText();
     }
 
-    private void initView(){
-        bar=view_root.findViewById(R.id.bar);
-        button=view_root.findViewById(R.id.btn_start);
-        image_blick=view_root.findViewById(R.id.image_blick);
-        btn_form=view_root.findViewById(R.id.btn_form);
-        bar.setProgress(90,true);
-        starAnimBtn();
+    private void setMainText() {
+        cpuTempText.setText(cpuTemp + "°C");
 
-
+        bar_circle.setProgressСolor(basicProcent, true);
     }
 
-    private void starAnimBtn(){
-
-        final ValueAnimator translateAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ObjectAnimator flashAnimator = ObjectAnimator.ofFloat(image_blick, "alpha", 0.0f, 1.0f);
-
-        //  translateAnimator.setDuration(2000);  // animation duration
-        translateAnimator.setRepeatCount(5);  // animation repeat count
-        translateAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        translateAnimator.setRepeatCount(Animation.INFINITE);
-
-        translateAnimator.setDuration(200);
-        //translateAnimator.setRepeatCount(5);
-        flashAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        flashAnimator.setRepeatCount(Animation.INFINITE);
-
-
-        final AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(flashAnimator,translateAnimator);
-        animatorSet.setDuration(2000);
-
-        final float x = image_blick.getX();
-        final float y = image_blick.getY();
-        translateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                float t = (Float) translateAnimator.getAnimatedValue();
-                image_blick.setTranslationX(x + t*255);    // do your own
-                //  image_blick.setTranslationY(y + t*100);    // thing here
-
+    public float cpuTemperature() {
+        Process process;
+        try {
+            process = Runtime.getRuntime().exec("cat sys/class/thermal/thermal_zone0/temp");
+            process.waitFor();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line = reader.readLine();
+            if(line!=null) {
+                float temp = Float.parseFloat(line);
+                return temp / 1000.0f;
+            }else{
+                return 51.0f;
             }
-        });
-
-        animatorSet.start();
-
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0f;
+        }
     }
 
+    @Override
+    public void basicInit() {
+        cpuTempText = view_root.findViewById(R.id.cpuTempText);
+        cpuTemp = cpuTemperature();
+        basicProcent = (int)((cpuTemp/MAX_CPU_TEMP) * 100);
+        starAnimBtn();
+        setData();
+    }
+
+    @Override
+    public void optimization() {
+        PackageManager pm = getContext().getPackageManager();
+        List<String> stdout = Shell.SH.run("ps");
+        List<String> packages = new ArrayList<>();
+        for (String line : stdout) {
+            String[] arr = line.split("\\s+");
+            String processName = arr[arr.length - 1].split(":")[0];
+            packages.add(processName);
+        }
+        List<ApplicationInfo> apps = pm.getInstalledApplications(0);
+
+        for (Iterator<ApplicationInfo> it = apps.iterator(); it.hasNext(); ) {
+            if (!packages.contains(it.next().packageName)) {
+                it.remove();
+            }
+        }
+        List<String> packages_all = new ArrayList<>();
+        for (ApplicationInfo app : apps) {
+            packages_all.add(app.processName);
+        }
+        ActivityManager am = (ActivityManager) getContext().getSystemService(ACTIVITY_SERVICE);
+        for (String name : packages_all
+        ) {
+            try {
+                if (!name.equals("com.cleaner.cybercleanerapp")) {
+                    am.killBackgroundProcesses(name);
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    @Override
+    public void onOptimizationComplete() {
+        cpuTemp -= new Random().nextInt(3);
+        basicProcent = (int)((cpuTemp/MAX_CPU_TEMP) * 100);
+        setData();
+        bar_circle.startAnim(0);
+        bar_circle.optimizationComplete(basicProcent, true);
+    }
 }

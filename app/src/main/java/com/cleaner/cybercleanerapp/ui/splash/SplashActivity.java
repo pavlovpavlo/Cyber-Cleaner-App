@@ -68,7 +68,7 @@ public class SplashActivity extends AppCompatActivity {
                         Log.e("mamory", memStat.getUsedMemory() + "/" + memStat.getTotalMemory());
                         SingletonClassApp.getInstance().UsedMemory = String.valueOf(memStat.getUsedMemory());
                         SingletonClassApp.getInstance().TotalMemory = String.valueOf(memStat.getTotalMemory());
-                        SingletonClassApp.getInstance().procentMemory=memStat.getProcentMemory();
+                        SingletonClassApp.getInstance().procentMemory= 100 - memStat.getProcentMemory();
                         SingletonClassApp.getInstance().UsedMemoryInt=memStat.getUsedMemoryLong();
                         SingletonClassApp.getInstance().TotalMemoryInt=memStat.getTotalMemoryLong();
                     }
