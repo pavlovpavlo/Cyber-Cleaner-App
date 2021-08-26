@@ -56,7 +56,6 @@ public class SplashActivity extends AppCompatActivity {
 
     private void getMemory() {
         final Handler handler = new Handler();
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -70,14 +69,8 @@ public class SplashActivity extends AppCompatActivity {
                         SingletonClassApp.getInstance().UsedMemory = String.valueOf(memStat.getUsedMemory());
                         SingletonClassApp.getInstance().TotalMemory = String.valueOf(memStat.getTotalMemory());
                         SingletonClassApp.getInstance().procentMemory=memStat.getProcentMemory();
-
-//                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-//                    intent.putExtra(MainActivity.PARAM_TOTAL_SPACE, diskStat.getTotalSpace());
-//                    intent.putExtra(MainActivity.PARAM_USED_SPACE, diskStat.getUsedSpace());
-//                    intent.putExtra(MainActivity.PARAM_TOTAL_MEMORY, memStat.getTotalMemory());
-//                    intent.putExtra(MainActivity.PARAM_USED_MEMORY, memStat.getUsedMemory());
-//                    startActivity(intent);
-//                    finish();
+                        SingletonClassApp.getInstance().UsedMemoryInt=memStat.getUsedMemoryLong();
+                        SingletonClassApp.getInstance().TotalMemoryInt=memStat.getTotalMemoryLong();
                     }
                 });
             }

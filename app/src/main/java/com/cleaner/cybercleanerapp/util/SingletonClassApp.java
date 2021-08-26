@@ -9,6 +9,8 @@ public class SingletonClassApp implements Serializable {
     public String UsedMemory="";
     public String TotalMemory="";
     public Integer procentMemory;
+    public long UsedMemoryInt;
+    public long TotalMemoryInt;
     //private constructor.
     private SingletonClassApp(){
         //Prevent form the reflection api.

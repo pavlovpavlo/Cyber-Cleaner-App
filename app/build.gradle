@@ -42,5 +42,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'com.github.Ryfthink:android-gradient-progress-bar:v1.0.0'
+    implementation 'com.github.antonKozyriatskyi:CircularProgressIndicator:1.3.0'
+    implementation 'com.shimaami.android:progressview:1.0.1'
     implementation "com.github.skydoves:progressview:1.1.2"
 }
