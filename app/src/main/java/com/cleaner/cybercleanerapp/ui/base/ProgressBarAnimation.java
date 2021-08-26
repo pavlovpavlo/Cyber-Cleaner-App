@@ -1,4 +1,4 @@
-package com.cleaner.cybercleanerapp.ui.splash;
+package com.cleaner.cybercleanerapp.ui.base;
 
 import android.view.animation.Animation;
 import android.view.animation.Transformation;

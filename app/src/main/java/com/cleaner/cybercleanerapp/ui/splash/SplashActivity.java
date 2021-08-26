@@ -12,12 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.ui.MainActivity;
+import com.cleaner.cybercleanerapp.ui.base.ProgressBarAnimation;
 import com.cleaner.cybercleanerapp.util.DiskStat;
 import com.cleaner.cybercleanerapp.util.MemStat;
-import com.cleaner.cybercleanerapp.util.MemoryUtils;
 import com.cleaner.cybercleanerapp.util.SingletonClassApp;
-
-import javax.net.ssl.SNIHostName;
 
 public class SplashActivity extends AppCompatActivity {
 
