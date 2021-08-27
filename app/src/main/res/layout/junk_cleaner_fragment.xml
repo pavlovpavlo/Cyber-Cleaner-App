@@ -33,17 +33,38 @@
                 android:layout_width="@dimen/first_circle_size"
                 android:layout_height="@dimen/first_circle_size"
                 android:src="@drawable/circle_1_fiol"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+                app:layout_constraintTop_toTopOf="@+id/linearLayoutColor" />
+
+            <TextView
+                android:id="@+id/text_total_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="0 MB"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
+                app:layout_constraintEnd_toEndOf="@+id/image_circle_1"
+                app:layout_constraintStart_toStartOf="@+id/image_circle_1"
+                app:layout_constraintTop_toTopOf="@+id/linearLayoutColor" />
+
+            <com.cleaner.cybercleanerapp.MyView.CircleView
+                android:id="@+id/bar_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
+                app:layout_constraintEnd_toEndOf="@+id/image_circle_1"
+                app:layout_constraintStart_toStartOf="@+id/image_circle_1"
+                app:layout_constraintTop_toTopOf="@+id/image_circle_1" />
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+                android:id="@+id/linearLayoutColor"
                 android:layout_width="@dimen/first_circle_size"
                 android:layout_height="@dimen/first_circle_size"
                 android:gravity="center"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -57,15 +78,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-
-                    <com.cleaner.cybercleanerapp.MyView.CircleView
-                        android:id="@+id/bar_new"
-                        android:layout_width="@dimen/progress_bar_size"
-                        android:layout_height="@dimen/progress_bar_size"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
                     <cn.septenary.ui.widget.GradientProgressBar
                         android:id="@+id/bar"
@@ -85,18 +97,6 @@
                         app:rotate="-90"
                         app:start_color="#38B000" />
 
-                    <TextView
-                        android:id="@+id/text_total_size"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="0 MB"
-                        android:textColor="@color/white"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/bar"
-                        app:layout_constraintEnd_toEndOf="@+id/bar"
-                        app:layout_constraintStart_toStartOf="@+id/bar"
-                        app:layout_constraintTop_toTopOf="@+id/bar" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 

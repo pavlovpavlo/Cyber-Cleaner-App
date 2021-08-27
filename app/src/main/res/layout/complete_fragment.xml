@@ -51,7 +51,7 @@
         android:paddingBottom="@dimen/progress_complete_bottom_margin">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayoutColor"
             android:layout_width="@dimen/complete_main_image_size"
             android:layout_height="@dimen/complete_main_image_size"
             android:background="@drawable/circle_1_fiol"

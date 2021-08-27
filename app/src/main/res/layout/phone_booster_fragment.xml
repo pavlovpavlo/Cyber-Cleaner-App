@@ -32,17 +32,69 @@
                 android:layout_width="@dimen/first_circle_size"
                 android:layout_height="@dimen/first_circle_size"
                 android:src="@drawable/circle_1_fiol"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+                app:layout_constraintTop_toTopOf="@+id/linearLayoutColor" />
+
+            <com.cleaner.cybercleanerapp.MyView.CircleView
+                android:id="@+id/bar_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
+                app:layout_constraintEnd_toEndOf="@+id/image_circle_1"
+                app:layout_constraintStart_toStartOf="@+id/image_circle_1"
+                app:layout_constraintTop_toTopOf="@+id/image_circle_1">
+
+            </com.cleaner.cybercleanerapp.MyView.CircleView>
+
+            <TextView
+                android:id="@+id/text_memory_p"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:gravity="center"
+                android:text="100%"
+                android:textColor="@color/white"
+                android:textSize="@dimen/progress_main_text"
+                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
+                app:layout_constraintEnd_toEndOf="@+id/image_circle_1"
+                app:layout_constraintStart_toStartOf="@+id/image_circle_1"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutColor" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/ubuntu_regular"
+                android:gravity="center"
+                android:text="Storage"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/text_memory_p"
+                app:layout_constraintEnd_toEndOf="@+id/bar_new"
+                app:layout_constraintStart_toStartOf="@+id/bar_new" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/ubuntu_regular"
+                android:gravity="center"
+                android:text="Found"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/bar_new"
+                app:layout_constraintStart_toStartOf="@+id/bar_new"
+                app:layout_constraintTop_toBottomOf="@+id/text_memory_p" />
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+                android:id="@+id/linearLayoutColor"
                 android:layout_width="@dimen/first_circle_size"
                 android:layout_height="@dimen/first_circle_size"
                 android:gravity="center"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -57,57 +109,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:fontFamily="@font/ubuntu_regular"
-                        android:gravity="center"
-                        android:text="Storage"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toTopOf="@+id/text_memory_p"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/ubuntu_regular"
-                        android:gravity="center"
-                        android:text="Found"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_memory_p" />
-
-                    <com.cleaner.cybercleanerapp.MyView.CircleView
-                        android:id="@+id/bar_new"
-                        android:layout_width="@dimen/progress_bar_size"
-                        android:layout_height="@dimen/progress_bar_size"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" >
-
-                    </com.cleaner.cybercleanerapp.MyView.CircleView>
-
-                    <TextView
-                        android:id="@+id/text_memory_p"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="100%"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/progress_main_text"
-                        app:layout_constraintBottom_toBottomOf="@+id/bar_new"
-                        app:layout_constraintEnd_toEndOf="@+id/bar_new"
-                        app:layout_constraintStart_toStartOf="@+id/bar_new"
-                        app:layout_constraintTop_toTopOf="@+id/bar_new" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 

@@ -140,7 +140,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
                         break;
 
                     case MSG_PROCESS_BEGIN:
-                        bar_circle.setProgressСolor(50,true);
+                        bar_circle.setProgressСolor(50,true,getContext());
                         bar_circle.startAnim(400);
                         break;
 
@@ -200,7 +200,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     private void startScan() {
-        bar_circle.setProgressСolor(50,true);
+        bar_circle.setProgressСolor(50,true,getContext());
 //        ProcessScanTask processScanTask = new ProcessScanTask(new IScanCallback() {
 //            @Override
 //            public void onBegin() {
@@ -385,7 +385,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     @Override
     public void basicInit() {
         starAnimBtn();
-        bar_circle.setProgressСolor(50,true);
+        bar_circle.setProgressСolor(50,true,getContext());
         bar_circle.startAnim(4000);
         setAnimeCircle(4, 0.9f);
         resetState();

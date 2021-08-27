@@ -69,7 +69,7 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
         int m = minuteWork - h * 60;
         timeBattery.setText(h + " h " + m + " m");
 
-        bar_circle.setProgressСolor(basicProcent, true);
+        bar_circle.setProgressСolor(basicProcent, true,getContext());
     }
 
     public int getBatteryPercentage(Context context) {
