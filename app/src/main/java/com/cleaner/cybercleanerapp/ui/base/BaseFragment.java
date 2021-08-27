@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.animation.Animation;
@@ -11,20 +12,32 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.cleaner.cybercleanerapp.MyView.CircleView;
 import com.cleaner.cybercleanerapp.R;
+import com.cleaner.cybercleanerapp.ui.MainActivity;
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseFragment extends Fragment {
     private View view;
+    private MainActivity mainActivity;
     private BaseFragmentInterface baseFragmentInterface;
     public CircleView bar_circle;
     public LinearLayout button;
     public ImageView image_blick;
     public ImageView iv;
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivity) {
+            mainActivity = (MainActivity) context;
+        }
+    }
 
     public void onAttachFragment(View view, BaseFragmentInterface baseFragmentInterface){
         this.view = view;
@@ -108,6 +121,8 @@ public class BaseFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
+            if(mainActivity != null)
+                mainActivity.isOptimizationActive = true;
             baseFragmentInterface.optimization();
             try {
                 TimeUnit.MILLISECONDS.sleep(4000);
@@ -123,6 +138,8 @@ public class BaseFragment extends Fragment {
             baseFragmentInterface.onOptimizationComplete();
             setAnimeCircle(0, 1.0f);
             setButtonOptimized();
+            if(mainActivity != null)
+                mainActivity.isOptimizationActive = false;
         }
     }
 }

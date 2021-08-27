@@ -15,6 +15,7 @@ public class MemStat {
     private long mAvailMemory;
    // private long mUsedMemory;
     private static final double B_TO_GB = 1024d * 1024d * 1024d;
+    private static final double B_TO_MB = 1024d * 1024d;
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public MemStat(Context context) {
         ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -44,7 +45,7 @@ public class MemStat {
 
 
     public float getUsedMemory() {
-        return ((int) (mUsedMemory / B_TO_GB * 100)) / 100.0f;
+        return ((int) (mUsedMemory / B_TO_MB * 100)) / 100.0f;
     }
 
     public long getTotalMemoryLong() {

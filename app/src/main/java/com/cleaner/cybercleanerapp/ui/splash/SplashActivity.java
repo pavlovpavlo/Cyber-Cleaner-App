@@ -14,8 +14,17 @@ import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.ui.MainActivity;
 import com.cleaner.cybercleanerapp.ui.base.ProgressBarAnimation;
 import com.cleaner.cybercleanerapp.util.DiskStat;
+import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.MemStat;
+import com.cleaner.cybercleanerapp.util.SharedData;
 import com.cleaner.cybercleanerapp.util.SingletonClassApp;
+import com.cleaner.cybercleanerapp.util.Util;
+
+import java.util.Date;
+
+import static com.cleaner.cybercleanerapp.util.Util.MAX_CPU_TEMP;
+import static com.cleaner.cybercleanerapp.util.Util.cpuTemperature;
+import static com.cleaner.cybercleanerapp.util.Util.getBatteryPercentage;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -71,12 +80,38 @@ public class SplashActivity extends AppCompatActivity {
                         SingletonClassApp.getInstance().procentMemory= 100 - memStat.getProcentMemory();
                         SingletonClassApp.getInstance().UsedMemoryInt=memStat.getUsedMemoryLong();
                         SingletonClassApp.getInstance().TotalMemoryInt=memStat.getTotalMemoryLong();
+
+                        baseInitOptimizationData();
                     }
                 });
             }
         });
 
         thread.start();
+    }
+
+    private void baseInitOptimizationData(){
+        LocalSharedUtil.setParameter(
+                new SharedData(SingletonClassApp.getInstance().procentMemory,
+                        SingletonClassApp.getInstance().UsedMemory + " MB", ""+new Date().getTime()),
+                Util.SHARED_STORAGE, getApplicationContext());
+
+        LocalSharedUtil.setParameter(
+                new SharedData(getBatteryPercentage(getApplicationContext()),
+                        getBatteryPercentage(getApplicationContext()) + " %", ""+new Date().getTime()),
+                Util.SHARED_BATTERY, getApplicationContext());
+
+        LocalSharedUtil.setParameter(
+                new SharedData(getBatteryPercentage(getApplicationContext()),
+                        getBatteryPercentage(getApplicationContext()) + " %", ""+new Date().getTime()),
+                Util.SHARED_CPU, getApplicationContext());
+
+        float cpuTemp = cpuTemperature();
+        int basicProcent = (int)((cpuTemp/MAX_CPU_TEMP) * 100);
+        LocalSharedUtil.setParameter(
+                new SharedData(basicProcent,
+                        cpuTemp + "°C", ""+new Date().getTime()),
+                Util.SHARED_JUNK, getApplicationContext());
     }
 
 }

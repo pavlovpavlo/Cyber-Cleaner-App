@@ -1,4 +1,4 @@
-package com.maxcleaner.pro8.util;
+package com.cleaner.cybercleanerapp.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

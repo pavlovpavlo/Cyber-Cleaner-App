@@ -1,7 +1,6 @@
 package com.cleaner.cybercleanerapp.ui.phone_booster;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -18,16 +17,17 @@ import androidx.annotation.Nullable;
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragment;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragmentInterface;
-import com.cleaner.cybercleanerapp.util.MemStat;
+import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
+import com.cleaner.cybercleanerapp.util.PhoneTaskCleanerUtil;
+import com.cleaner.cybercleanerapp.util.SharedData;
 import com.cleaner.cybercleanerapp.util.SingletonClassApp;
+import com.cleaner.cybercleanerapp.util.Util;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 
 import eu.chainfire.libsuperuser.Shell;
-
-import static android.content.Context.ACTIVITY_SERVICE;
 
 public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentInterface {
     private ProgressBar progressView;
@@ -79,10 +79,10 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
     }
 
     private void setMainText(){
-        text_memory_p.setText(SingletonClassApp.getInstance().procentMemory + " %");
+        text_memory_p.setText(SingletonClassApp.getInstance().UsedMemory + " MB");
         memory_p.setText(SingletonClassApp.getInstance().procentMemory + " %");
-        memory_text_p.setText(SingletonClassApp.getInstance().UsedMemory + " GB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB");
-        memory_use.setText(SingletonClassApp.getInstance().UsedMemory + " GB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB");
+        memory_text_p.setText(SingletonClassApp.getInstance().UsedMemory + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB");
+        memory_use.setText(SingletonClassApp.getInstance().UsedMemory + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB");
     }
 
     @Override
@@ -103,39 +103,7 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
 
     @Override
     public void optimization() {
-        PackageManager pm = getContext().getPackageManager();
-        List<String> stdout = Shell.SH.run("ps");
-        List<String> packages = new ArrayList<>();
-        for (String line : stdout) {
-            String[] arr = line.split("\\s+");
-            String processName = arr[arr.length - 1].split(":")[0];
-            packages.add(processName);
-        }
-        List<ApplicationInfo> apps = pm.getInstalledApplications(0);
-
-        for (Iterator<ApplicationInfo> it = apps.iterator(); it.hasNext(); ) {
-            if (!packages.contains(it.next().packageName)) {
-                it.remove();
-            }
-        }
-        List<String> packages_all = new ArrayList<>();
-        for (ApplicationInfo app : apps) {
-            packages_all.add(app.processName);
-        }
-        ActivityManager am = (ActivityManager) getContext().getSystemService(ACTIVITY_SERVICE);
-        for (String name : packages_all
-        ) {
-            try {
-                if (!name.equals("com.cleaner.cybercleanerapp")) {
-                    am.killBackgroundProcesses(name);
-                }
-            } catch (Exception e) {
-            }
-            final MemStat memStat = new MemStat(getContext());
-            SingletonClassApp.getInstance().UsedMemory = String.valueOf(memStat.getUsedMemory());
-            SingletonClassApp.getInstance().TotalMemory = String.valueOf(memStat.getTotalMemory());
-            SingletonClassApp.getInstance().procentMemory = 100 - memStat.getProcentMemory();
-        }
+        PhoneTaskCleanerUtil.clearBackgroundTasks(getContext());
     }
 
     @Override
@@ -144,6 +112,11 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
         //bar_circle.setProgressСolor(SingletonClassApp.getInstance().procentMemory, true);
         bar_circle.startAnim(0);
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
+
+        LocalSharedUtil.setParameter(
+                new SharedData(SingletonClassApp.getInstance().procentMemory,
+                SingletonClassApp.getInstance().UsedMemory + " MB", ""+new Date().getTime()),
+                Util.SHARED_STORAGE, getContext());
     }
 }
 

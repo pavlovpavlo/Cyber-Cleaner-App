@@ -1,21 +1,31 @@
-package com.maxcleaner.pro8.util;
+package com.cleaner.cybercleanerapp.util;
 
 import java.io.Serializable;
 
 public class SharedData implements Serializable {
-    float value;
+    int percent;
+    String value;
     String date;
 
-    public SharedData(float value, String date) {
+    public SharedData(int percent, String value, String date) {
+        this.percent = percent;
         this.value = value;
         this.date = date;
     }
 
-    public float getValue() {
+    public int getPercent() {
+        return percent;
+    }
+
+    public void setPercent(int percent) {
+        this.percent = percent;
+    }
+
+    public String getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(String value) {
         this.value = value;
     }
 

@@ -139,6 +139,7 @@
         android:layout_marginTop="12dp"
         android:orientation="horizontal">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/phoneBoosterItem"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -148,7 +149,7 @@
             android:paddingTop="12dp"
             android:background="@drawable/ic_complete_fiol">
             <ImageView
-                android:id="@+id/image_booster"
+                android:id="@+id/imageBooster"
                 android:layout_width="@dimen/booster_icon_size"
                 android:layout_height="@dimen/booster_icon_size"
                 app:layout_constraintTop_toTopOf="parent"
@@ -157,6 +158,7 @@
                 android:padding="10dp"
                 android:src="@drawable/ic_tab_storage_active" />
             <TextView
+                android:id="@+id/labelBooster"
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
                 android:includeFontPadding="false"
@@ -175,7 +177,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/image_booster"
+                app:layout_constraintTop_toBottomOf="@id/imageBooster"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="@dimen/margin_end_conteiner_complete"
                 android:orientation="vertical">
@@ -190,7 +192,7 @@
                     android:textSize="18sp" />
 
                 <ProgressBar
-                    android:id="@+id/progress_booster"
+                    android:id="@+id/progressBoster"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="7dp"
@@ -200,6 +202,7 @@
                     app:layout_constraintBottom_toBottomOf="parent" />
 
                 <TextView
+                    android:id="@+id/valueBooster"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_8dp"
@@ -210,6 +213,7 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/batteryItem"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -290,6 +294,7 @@
         android:layout_marginTop="12dp"
         android:orientation="horizontal">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cpuItem"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -361,6 +366,7 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/junkItem"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
