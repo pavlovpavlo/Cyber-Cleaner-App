@@ -45,4 +45,5 @@ dependencies {
     implementation 'com.github.antonKozyriatskyi:CircularProgressIndicator:1.3.0'
     implementation 'com.shimaami.android:progressview:1.0.1'
     implementation "com.github.skydoves:progressview:1.1.2"
+    implementation 'com.jaredrummler:android-processes:1.0.3'
 }

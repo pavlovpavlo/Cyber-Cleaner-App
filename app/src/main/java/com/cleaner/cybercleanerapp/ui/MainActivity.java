@@ -37,7 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        ExitDialog.display(getSupportFragmentManager(), this);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        int prevFragId = navController.getPreviousBackStackEntry().getDestination().getId();
+        if (prevFragId == R.id.complete_fragment)
+            super.onBackPressed();
+        else
+            ExitDialog.display(getSupportFragmentManager(), this);
     }
 
     @Override
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
 
-    private void initViews(){
+    private void initViews() {
         toolbarText = findViewById(R.id.toolbar_text);
         boosterItem = findViewById(R.id.storage_icon);
         batteryItem = findViewById(R.id.battery_icon);
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTabClick(View view) {
-        if(!isOptimizationActive) {
+        if (!isOptimizationActive) {
             disableLastTab();
             lastActiveView = view;
             setActiveTab(view);

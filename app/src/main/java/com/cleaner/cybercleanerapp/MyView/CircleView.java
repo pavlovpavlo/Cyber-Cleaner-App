@@ -1,5 +1,6 @@
 package com.cleaner.cybercleanerapp.MyView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,9 +21,11 @@ import cn.septenary.ui.widget.GradientProgressBar;
 public class CircleView extends ConstraintLayout {
 
     View rootView;
+    private LinearLayout linearLayoutColor;
     private GradientProgressBar bar2;
     private GradientProgressBar bar3;
     private GradientProgressBar bar4;
+    private ConstraintLayout global_color;
     TextView valueTextView;
     ImageView delFilter;
 
@@ -35,21 +39,28 @@ public class CircleView extends ConstraintLayout {
         init(context);
     }
 
-    public void setProgressСolor(int progress,boolean anim) {
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void setProgressСolor(int progress, boolean anim, Context context) {
         if (progress<=33){
             bar3.setVisibility(View.GONE);
             bar4.setVisibility(View.GONE);
+            linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_green_light));
+            global_color.setBackground(context.getDrawable(R.drawable.ic_green_light));
             bar2.setVisibility(View.VISIBLE);
             bar2.setProgress(progress,anim);}
         if (progress>33 && progress<=66){
             bar2.setVisibility(View.GONE);
             bar4.setVisibility(View.GONE);
+            linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_purple_light));
+            global_color.setBackground(context.getDrawable(R.drawable.ic_purple_light));
             bar3.setVisibility(View.VISIBLE);
             bar3.setProgress(progress,anim);}
         if (progress>66){
             bar2.setVisibility(View.GONE);
             bar3.setVisibility(View.GONE);
             bar4.setVisibility(View.VISIBLE);
+            linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_red_light));
+            global_color.setBackground(context.getDrawable(R.drawable.ic_red_light));
             bar4.setProgress(progress,anim);}
     }
     public void optimizationComplete(int progress,boolean anim) {
@@ -74,7 +85,8 @@ public class CircleView extends ConstraintLayout {
         bar2 = rootView.findViewById(R.id.bar2);
         bar3 = rootView.findViewById(R.id.bar3);
         bar4 = rootView.findViewById(R.id.bar4);
-
+        global_color=rootView.findViewById(R.id.global_color);
+        linearLayoutColor=rootView.findViewById(R.id.linearLayoutColor);
     }
 }
 

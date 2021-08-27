@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.cleaner.cybercleanerapp.MyView.CircleView;
@@ -52,10 +54,24 @@ public class BaseFragment extends Fragment {
         image_blick = view.findViewById(R.id.image_blick);
         iv = view.findViewById(R.id.image_circle_1);
         button.setOnClickListener(v -> {
-            bar_circle.startAnim(4000);
-            getApp();
-            starAnimBtn();
+            if (ActivityCompat.checkSelfPermission(getContext(),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(getContext(),
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                                android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        111);
+            } else {
+                startOptimization();
+            }
+
         });
+    }
+
+    private void startOptimization(){
+        bar_circle.startAnim(4000);
+        getApp();
+        starAnimBtn();
     }
 
     public void starAnimBtn() {

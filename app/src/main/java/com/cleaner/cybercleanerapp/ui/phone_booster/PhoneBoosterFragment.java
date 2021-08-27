@@ -59,7 +59,7 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
         progressView.setProgress(SingletonClassApp.getInstance().procentMemory);
         progressView2.setMax(100);
         progressView2.setProgress(SingletonClassApp.getInstance().procentMemory);
-        bar_circle.setProgressСolor(SingletonClassApp.getInstance().procentMemory, true);
+        bar_circle.setProgressСolor(SingletonClassApp.getInstance().procentMemory, true,getContext());
     }
 
     private void getProcessCount(){
@@ -89,13 +89,10 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
     public void basicInit() {
         progressView = view_root.findViewById(R.id.progress);
         progressView2 = view_root.findViewById(R.id.progress2);
-
         memory_p = view_root.findViewById(R.id.memory_p);
         memory_use = view_root.findViewById(R.id.memory_use);
         text_memory_p = view_root.findViewById(R.id.text_memory_p);
-
         text_r_process = view_root.findViewById(R.id.text_r_process);
-
         memory_text_p = view_root.findViewById(R.id.memory_text_p);
         starAnimBtn();
         setMemory();

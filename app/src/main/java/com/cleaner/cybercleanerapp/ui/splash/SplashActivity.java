@@ -102,8 +102,8 @@ public class SplashActivity extends AppCompatActivity {
                 Util.SHARED_BATTERY, getApplicationContext());
 
         LocalSharedUtil.setParameter(
-                new SharedData(getBatteryPercentage(getApplicationContext()),
-                        getBatteryPercentage(getApplicationContext()) + " %", ""+new Date().getTime()),
+                new SharedData(SingletonClassApp.getInstance().procentMemory,
+                        SingletonClassApp.getInstance().UsedMemory + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", ""+new Date().getTime()),
                 Util.SHARED_CPU, getApplicationContext());
 
         float cpuTemp = cpuTemperature();
@@ -111,7 +111,7 @@ public class SplashActivity extends AppCompatActivity {
         LocalSharedUtil.setParameter(
                 new SharedData(basicProcent,
                         cpuTemp + "°C", ""+new Date().getTime()),
-                Util.SHARED_JUNK, getApplicationContext());
+                Util.SHARED_CPU, getApplicationContext());
     }
 
 }

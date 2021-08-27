@@ -49,7 +49,7 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
     private void setMainText() {
         cpuTempText.setText(cpuTemp + "°C");
 
-        bar_circle.setProgressСolor(basicProcent, true);
+        bar_circle.setProgressСolor(basicProcent, true,getContext());
     }
 
 
