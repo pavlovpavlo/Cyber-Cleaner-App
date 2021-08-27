@@ -79,7 +79,7 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
     }
 
     private void setMainText(){
-        text_memory_p.setText(SingletonClassApp.getInstance().procentMemory + " %");
+        text_memory_p.setText(SingletonClassApp.getInstance().UsedMemory + " GB");
         memory_p.setText(SingletonClassApp.getInstance().procentMemory + " %");
         memory_text_p.setText(SingletonClassApp.getInstance().UsedMemory + " GB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB");
         memory_use.setText(SingletonClassApp.getInstance().UsedMemory + " GB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB");
@@ -89,13 +89,10 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
     public void basicInit() {
         progressView = view_root.findViewById(R.id.progress);
         progressView2 = view_root.findViewById(R.id.progress2);
-
         memory_p = view_root.findViewById(R.id.memory_p);
         memory_use = view_root.findViewById(R.id.memory_use);
         text_memory_p = view_root.findViewById(R.id.text_memory_p);
-
         text_r_process = view_root.findViewById(R.id.text_r_process);
-
         memory_text_p = view_root.findViewById(R.id.memory_text_p);
         starAnimBtn();
         setMemory();
