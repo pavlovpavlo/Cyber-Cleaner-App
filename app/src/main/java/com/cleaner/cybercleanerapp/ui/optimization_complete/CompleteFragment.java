@@ -91,7 +91,6 @@ public class CompleteFragment extends Fragment {
         TextView label = (TextView) container.getChildAt(1);
         ProgressBar progress = (ProgressBar) (((LinearLayout) container.getChildAt(2)).getChildAt(1));
         TextView value = (TextView) (((LinearLayout) container.getChildAt(2)).getChildAt(2));
-
         SharedData data = LocalSharedUtil.getParameter(sharedKey, getContext());
 
 

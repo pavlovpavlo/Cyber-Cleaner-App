@@ -79,8 +79,12 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
         int countAll = installedAppsInfo.size();
 
         for (int i = 0; i < installedAppsInfo.size() / countInRow; i++) {
-            LinearLayout programContainer = (LinearLayout)lLayoutInflater.inflate(R.layout.item_program_container, null);
 
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            LinearLayout programContainer = (LinearLayout)lLayoutInflater.inflate(R.layout.item_program_container, null);
+            layoutParams.setMargins(15, 0, 15, 15);
             int countCell = countAll < countInRow ? countAll : countInRow;
             for (int j = 0; j < countCell; j++) {
                 View program = lLayoutInflater.inflate(R.layout.item_process, null);
@@ -93,12 +97,11 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
                 text.setText(model.getInstalledAppsSize());
                 if(j == countCell-1)
                     line.setVisibility(View.GONE);
-
                 programContainer.addView(program);
             }
             countAll -= countCell;
 
-            containerApp.addView(programContainer);
+            containerApp.addView(programContainer,layoutParams);
         }
 
     }
