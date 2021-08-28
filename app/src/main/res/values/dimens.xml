@@ -17,11 +17,12 @@
     <dimen name="junk_title_margin">5dp</dimen>
     <dimen name="required_size">16dp</dimen>
     <dimen name="required_text_size">8sp</dimen>
-    <dimen name="progress_main_text">20sp</dimen>
+    <dimen name="progress_main_text">18sp</dimen>
     <dimen name="complete_title_text">18sp</dimen>
     <dimen name="margin_8dp">5dp</dimen>
     <dimen name="progress_complete_bottom_margin">16dp</dimen>
     <dimen name="margin_end_conteiner_complete">4dp</dimen>
     <dimen name="complete_title_progress_size">15dp</dimen>
     <dimen name="complete_main_image_size">164dp</dimen>
+    <dimen name="booster_second_text">14sp</dimen>
 </resources>

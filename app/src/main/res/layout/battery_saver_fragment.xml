@@ -33,6 +33,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/linearLayoutColor" />
+            <TextView
+                android:id="@+id/batteryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="0 %"
+                android:textColor="@color/white"
+                android:textSize="@dimen/progress_main_text"
+                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
+                app:layout_constraintEnd_toEndOf="@+id/image_circle_1"
+                app:layout_constraintStart_toStartOf="@+id/image_circle_1"
+                app:layout_constraintTop_toTopOf="@+id/image_circle_1" />
 
             <com.cleaner.cybercleanerapp.MyView.CircleView
                 android:id="@+id/bar_new"
@@ -64,6 +76,17 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
+            <ImageView
+                android:id="@+id/loadIcon"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_tab_battery_active"
+                android:visibility="gone"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_circle_1"
+                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

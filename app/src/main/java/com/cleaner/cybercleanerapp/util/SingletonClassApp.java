@@ -8,9 +8,9 @@ public class SingletonClassApp implements Serializable {
     private static volatile SingletonClassApp sSoleInstance;
     public String UsedMemory="";
     public String TotalMemory="";
-    public Integer procentMemory;
-    public long UsedMemoryInt;
-    public long TotalMemoryInt;
+    public Integer procentMemory = 0;
+    public long UsedMemoryInt = 0;
+    public long TotalMemoryInt = 0;
     //private constructor.
     private SingletonClassApp(){
         //Prevent form the reflection api.

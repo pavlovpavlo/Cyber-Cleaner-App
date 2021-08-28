@@ -8,11 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragment;
@@ -43,7 +46,7 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         view_root = inflater.inflate(R.layout.phone_booster_fragment, container, false);
-        onAttachFragment(view_root, this);
+        onAttachFragment(view_root, this, false);
         return view_root;
     }
 
@@ -100,7 +103,14 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
 
     @Override
     public void optimization() {
+
         PhoneTaskCleanerUtil.clearBackgroundTasks(getContext());
+    }
+
+    @Override
+    public void optimizationClick() {
+        ((LinearLayout)text_memory_p.getParent()).setVisibility(View.GONE);
+        imageLoadIcon.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -114,6 +124,10 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
                 new SharedData(SingletonClassApp.getInstance().procentMemory,
                 SingletonClassApp.getInstance().UsedMemory + " MB", ""+new Date().getTime()),
                 Util.SHARED_STORAGE, getContext());
+        ((LinearLayout)text_memory_p.getParent()).setVisibility(View.VISIBLE);
+        imageLoadIcon.setVisibility(View.GONE);
+        NavController controller = NavHostFragment.findNavController(PhoneBoosterFragment.this);
+        controller.navigate(R.id.complete_fragment, null);
     }
 }
 

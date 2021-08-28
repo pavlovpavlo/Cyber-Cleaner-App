@@ -27,10 +27,12 @@ public class BaseFragment extends Fragment {
     private View view;
     private MainActivity mainActivity;
     private BaseFragmentInterface baseFragmentInterface;
+    private boolean isPermissionFragment;
     public CircleView bar_circle;
     public LinearLayout button;
     public ImageView image_blick;
     public ImageView iv;
+    public ImageView imageLoadIcon;
 
 
     @Override
@@ -41,9 +43,10 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    public void onAttachFragment(View view, BaseFragmentInterface baseFragmentInterface){
+    public void onAttachFragment(View view, BaseFragmentInterface baseFragmentInterface, boolean isPermissionFragment){
         this.view = view;
         this.baseFragmentInterface = baseFragmentInterface;
+        this.isPermissionFragment = isPermissionFragment;
         initViews();
         baseFragmentInterface.basicInit();
     }
@@ -53,22 +56,28 @@ public class BaseFragment extends Fragment {
         button = view.findViewById(R.id.btn_start);
         image_blick = view.findViewById(R.id.image_blick);
         iv = view.findViewById(R.id.image_circle_1);
+        imageLoadIcon = view.findViewById(R.id.loadIcon);
         button.setOnClickListener(v -> {
-            if (ActivityCompat.checkSelfPermission(getContext(),
-                    android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                    ActivityCompat.checkSelfPermission(getContext(),
-                            android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                                android.Manifest.permission.ACCESS_FINE_LOCATION},
-                        111);
-            } else {
+            if(isPermissionFragment) {
+                if (ActivityCompat.checkSelfPermission(getContext(),
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(getContext(),
+                                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            110011);
+                } else {
+                    startOptimization();
+                }
+            }else
                 startOptimization();
-            }
+
 
         });
     }
 
     private void startOptimization(){
+        baseFragmentInterface.optimizationClick();
         bar_circle.startAnim(4000);
         getApp();
         starAnimBtn();

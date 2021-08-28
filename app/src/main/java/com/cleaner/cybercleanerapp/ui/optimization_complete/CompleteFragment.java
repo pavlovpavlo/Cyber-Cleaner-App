@@ -30,6 +30,7 @@ public class CompleteFragment extends Fragment {
     private ConstraintLayout junkItem;
     private TextView countOptimizationText;
     private TextView optimizationSecondText;
+    private ProgressBar main_progress;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -51,6 +52,8 @@ public class CompleteFragment extends Fragment {
             countOptimizationText.setVisibility(View.GONE);
             optimizationSecondText.setVisibility(View.GONE);
         }
+        main_progress.setMax(4);
+        main_progress.setProgress(countGoodOptimized);
     }
 
     private void initViews(View view) {
@@ -58,6 +61,7 @@ public class CompleteFragment extends Fragment {
         batteryItem = view.findViewById(R.id.batteryItem);
         cpuItem = view.findViewById(R.id.cpuItem);
         junkItem = view.findViewById(R.id.junkItem);
+        main_progress = view.findViewById(R.id.main_progress);
 
         countOptimizationText = view.findViewById(R.id.count_optimization_text);
         optimizationSecondText = view.findViewById(R.id.optimization_second_text);

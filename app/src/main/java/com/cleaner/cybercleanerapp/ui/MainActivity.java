@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        int prevFragId = navController.getPreviousBackStackEntry().getDestination().getId();
+        int prevFragId = navController.getCurrentBackStackEntry().getDestination().getId();
         if (prevFragId == R.id.complete_fragment)
             super.onBackPressed();
         else

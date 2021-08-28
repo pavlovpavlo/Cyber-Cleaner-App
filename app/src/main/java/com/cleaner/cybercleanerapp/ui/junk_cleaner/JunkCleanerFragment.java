@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.callback.IScanCallback;
@@ -22,6 +25,7 @@ import com.cleaner.cybercleanerapp.task.OverallScanTask;
 import com.cleaner.cybercleanerapp.task.SysCacheScanTask;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragment;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragmentInterface;
+import com.cleaner.cybercleanerapp.ui.phone_booster.PhoneBoosterFragment;
 import com.cleaner.cybercleanerapp.util.CleanUtil;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.SharedData;
@@ -65,7 +69,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         view_root = inflater.inflate(R.layout.junk_cleaner_fragment, container, false);
 
         initHandler();
-        onAttachFragment(view_root, this);
+        onAttachFragment(view_root, this, true);
         initView();
 
         return view_root;
@@ -314,8 +318,18 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     @Override
+    public void optimizationClick() {
+        ((LinearLayout)text_total_size.getParent()).setVisibility(View.GONE);
+        imageLoadIcon.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void onOptimizationComplete() {
         bar_circle.startAnim(0);
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
+        ((LinearLayout)text_total_size.getParent()).setVisibility(View.GONE);
+        imageLoadIcon.setVisibility(View.VISIBLE);
+        NavController controller = NavHostFragment.findNavController(JunkCleanerFragment.this);
+        controller.navigate(R.id.complete_fragment, null);
     }
 }

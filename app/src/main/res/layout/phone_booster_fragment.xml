@@ -47,47 +47,59 @@
 
             </com.cleaner.cybercleanerapp.MyView.CircleView>
 
-            <TextView
-                android:id="@+id/text_memory_p"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ubuntu_bold"
-                android:gravity="center"
-                android:text="100%"
-                android:textColor="@color/white"
-                android:textSize="@dimen/progress_main_text"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
                 app:layout_constraintEnd_toEndOf="@+id/image_circle_1"
                 app:layout_constraintStart_toStartOf="@+id/image_circle_1"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutColor" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutColor"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/ubuntu_regular"
                 android:gravity="center"
-                android:text="Storage"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/text_memory_p"
-                app:layout_constraintEnd_toEndOf="@+id/bar_new"
-                app:layout_constraintStart_toStartOf="@+id/bar_new" />
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:gravity="center"
+                    android:text="Found"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/booster_second_text"
+                    app:layout_constraintEnd_toEndOf="@+id/bar_new"
+                    app:layout_constraintStart_toStartOf="@+id/bar_new"
+                    app:layout_constraintTop_toBottomOf="@+id/text_memory_p" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/ubuntu_regular"
-                android:gravity="center"
-                android:text="Found"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/bar_new"
-                app:layout_constraintStart_toStartOf="@+id/bar_new"
-                app:layout_constraintTop_toBottomOf="@+id/text_memory_p" />
+                <TextView
+                    android:id="@+id/text_memory_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:gravity="center"
+                    android:text="100%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/progress_main_text"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
+                    app:layout_constraintEnd_toEndOf="@+id/image_circle_1"
+                    app:layout_constraintStart_toStartOf="@+id/image_circle_1"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayoutColor" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:gravity="center"
+                    android:text="Storage"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/booster_second_text"
+                    app:layout_constraintBottom_toTopOf="@+id/text_memory_p"
+                    app:layout_constraintEnd_toEndOf="@+id/bar_new"
+                    app:layout_constraintStart_toStartOf="@+id/bar_new" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayoutColor"
@@ -111,6 +123,17 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
+            <ImageView
+                android:id="@+id/loadIcon"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_tab_storage_active"
+                android:visibility="gone"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_circle_1"
+                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

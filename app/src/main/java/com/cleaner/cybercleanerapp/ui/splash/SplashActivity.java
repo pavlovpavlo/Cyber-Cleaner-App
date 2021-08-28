@@ -36,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        baseInitOptimizationData();
         getMemory();
         ProgressBar progressView = findViewById(R.id.progress);
         ProgressBarAnimation anim = new ProgressBarAnimation(progressView, 0, 100);
@@ -51,9 +52,6 @@ public class SplashActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
-
-
-
             }
 
             @Override
@@ -75,13 +73,13 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Log.e("mamory", memStat.getUsedMemory() + "/" + memStat.getTotalMemory());
-                        SingletonClassApp.getInstance().UsedMemory = String.valueOf(memStat.getUsedMemory());
+                        SingletonClassApp.getInstance().UsedMemory = String.valueOf((int)memStat.getUsedMemory());
                         SingletonClassApp.getInstance().TotalMemory = String.valueOf(memStat.getTotalMemory());
                         SingletonClassApp.getInstance().procentMemory= 100 - memStat.getProcentMemory();
                         SingletonClassApp.getInstance().UsedMemoryInt=memStat.getUsedMemoryLong();
                         SingletonClassApp.getInstance().TotalMemoryInt=memStat.getTotalMemoryLong();
-
                         baseInitOptimizationData();
+
                     }
                 });
             }
@@ -91,27 +89,38 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void baseInitOptimizationData(){
-        LocalSharedUtil.setParameter(
-                new SharedData(SingletonClassApp.getInstance().procentMemory,
-                        SingletonClassApp.getInstance().UsedMemory + " MB", ""+new Date().getTime()),
-                Util.SHARED_STORAGE, getApplicationContext());
+        if(!isCurrentEmpty(Util.SHARED_STORAGE)) {
+            LocalSharedUtil.setParameter(
+                    new SharedData(SingletonClassApp.getInstance().procentMemory,
+                            SingletonClassApp.getInstance().UsedMemory + " MB", "" + (new Date().getTime() - 7_200_000)),
+                    Util.SHARED_STORAGE, getApplicationContext());
+        }
+        if(!isCurrentEmpty(Util.SHARED_BATTERY)) {
+            LocalSharedUtil.setParameter(
+                    new SharedData(getBatteryPercentage(getApplicationContext()),
+                            getBatteryPercentage(getApplicationContext()) + " %", "" + (new Date().getTime() - 7_200_000)),
+                    Util.SHARED_BATTERY, getApplicationContext());
+        }
+        if(!isCurrentEmpty(Util.SHARED_JUNK)) {
+            LocalSharedUtil.setParameter(
+                    new SharedData(SingletonClassApp.getInstance().procentMemory,
+                            SingletonClassApp.getInstance().UsedMemory + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", "" + (new Date().getTime() - 7_200_000)),
+                    Util.SHARED_JUNK, getApplicationContext());
+        }
+        if(!isCurrentEmpty(Util.SHARED_CPU)) {
+            float cpuTemp = cpuTemperature();
+            int basicProcent = (int) ((cpuTemp / MAX_CPU_TEMP) * 100);
+            LocalSharedUtil.setParameter(
+                    new SharedData(basicProcent,
+                            cpuTemp + "°C", "" + (new Date().getTime() - 7_200_000)),
+                    Util.SHARED_CPU, getApplicationContext());
+        }
+    }
 
-        LocalSharedUtil.setParameter(
-                new SharedData(getBatteryPercentage(getApplicationContext()),
-                        getBatteryPercentage(getApplicationContext()) + " %", ""+new Date().getTime()),
-                Util.SHARED_BATTERY, getApplicationContext());
+    private boolean isCurrentEmpty(String sharedKey){
+        SharedData data = LocalSharedUtil.getParameter(sharedKey, this);
 
-        LocalSharedUtil.setParameter(
-                new SharedData(SingletonClassApp.getInstance().procentMemory,
-                        SingletonClassApp.getInstance().UsedMemory + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", ""+new Date().getTime()),
-                Util.SHARED_CPU, getApplicationContext());
-
-        float cpuTemp = cpuTemperature();
-        int basicProcent = (int)((cpuTemp/MAX_CPU_TEMP) * 100);
-        LocalSharedUtil.setParameter(
-                new SharedData(basicProcent,
-                        cpuTemp + "°C", ""+new Date().getTime()),
-                Util.SHARED_CPU, getApplicationContext());
+        return (data!= null && (Long.parseLong(data.getDate()) + 7_200_000) > new Date().getTime());
     }
 
 }

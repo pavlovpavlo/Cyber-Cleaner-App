@@ -44,7 +44,7 @@ public class PhoneTaskCleanerUtil {
             } catch (Exception e) {
             }
             final MemStat memStat = new MemStat(context);
-            SingletonClassApp.getInstance().UsedMemory = String.valueOf(memStat.getUsedMemory());
+            SingletonClassApp.getInstance().UsedMemory = String.valueOf((int)memStat.getUsedMemory());
             SingletonClassApp.getInstance().TotalMemory = String.valueOf(memStat.getTotalMemory());
             SingletonClassApp.getInstance().procentMemory = 100 - memStat.getProcentMemory();
         }
