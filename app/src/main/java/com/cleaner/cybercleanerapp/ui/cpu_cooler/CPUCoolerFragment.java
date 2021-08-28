@@ -115,6 +115,16 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
     }
 
     @Override
+    public void fragmentIsOptimized(SharedData data) {
+        basicProcent = data.getPercent();
+        cpuTemp = (MAX_CPU_TEMP / 100) * basicProcent;
+
+        setData();
+        bar_circle.startAnim(0);
+        bar_circle.optimizationComplete(basicProcent, true);
+    }
+
+    @Override
     public void onOptimizationComplete() {
         cpuTemp -= new Random().nextInt(3);
         basicProcent = (int) ((cpuTemp / MAX_CPU_TEMP) * 100);

@@ -11,16 +11,21 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.cleaner.cybercleanerapp.MyView.CircleView;
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.ui.MainActivity;
+import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
+import com.cleaner.cybercleanerapp.util.SharedData;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class BaseFragment extends Fragment {
@@ -81,6 +86,15 @@ public class BaseFragment extends Fragment {
         bar_circle.startAnim(4000);
         getApp();
         starAnimBtn();
+    }
+
+    private void checkElement(String sharedKey) {
+        SharedData data = LocalSharedUtil.getParameter(sharedKey, getContext());
+
+        boolean isOptimized = (Long.parseLong(data.getDate()) + 7_200_000) > new Date().getTime();
+        if (isOptimized) {
+            baseFragmentInterface.fragmentIsOptimized(data);
+        }
     }
 
     public void starAnimBtn() {
@@ -161,6 +175,7 @@ public class BaseFragment extends Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             baseFragmentInterface.onOptimizationComplete();
+            mainActivity.checkData();
             setAnimeCircle(0, 1.0f);
             setButtonOptimized();
             if(mainActivity != null)

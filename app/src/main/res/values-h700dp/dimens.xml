@@ -23,4 +23,5 @@
     <dimen name="complete_title_progress_size">20dp</dimen>
     <dimen name="complete_main_image_size">184dp</dimen>
     <dimen name="booster_second_text">16sp</dimen>
+    <dimen name="complete_text_size">18sp</dimen>
 </resources>

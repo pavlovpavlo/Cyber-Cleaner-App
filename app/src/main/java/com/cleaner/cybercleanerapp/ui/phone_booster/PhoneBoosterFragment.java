@@ -57,15 +57,15 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
         getProcessCount();
     }
 
-    private void setProgressBarData(){
+    private void setProgressBarData() {
         progressView.setMax(100);
         progressView.setProgress(SingletonClassApp.getInstance().procentMemory);
         progressView2.setMax(100);
         progressView2.setProgress(SingletonClassApp.getInstance().procentMemory);
-        bar_circle.setProgressСolor(SingletonClassApp.getInstance().procentMemory, true,getContext());
+        bar_circle.setProgressСolor(SingletonClassApp.getInstance().procentMemory, true, getContext());
     }
 
-    private void getProcessCount(){
+    private void getProcessCount() {
         PackageManager pm = getContext().getPackageManager();
         List<String> stdout = Shell.SH.run("ps");
         List<String> packages = new ArrayList<>();
@@ -81,7 +81,7 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
         text_r_process.setText("" + apps.size());
     }
 
-    private void setMainText(){
+    private void setMainText() {
         text_memory_p.setText(SingletonClassApp.getInstance().UsedMemory + " MB");
         memory_p.setText(SingletonClassApp.getInstance().procentMemory + " %");
         memory_text_p.setText(SingletonClassApp.getInstance().UsedMemory + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB");
@@ -109,8 +109,18 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
 
     @Override
     public void optimizationClick() {
-        ((LinearLayout)text_memory_p.getParent()).setVisibility(View.GONE);
+        ((LinearLayout) text_memory_p.getParent()).setVisibility(View.GONE);
         imageLoadIcon.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void fragmentIsOptimized(SharedData data) {
+        SingletonClassApp.getInstance().procentMemory = data.getPercent();
+        SingletonClassApp.getInstance().UsedMemory = data.getValue().substring(0, data.getValue().indexOf(""));
+        setMemory();
+        //bar_circle.setProgressСolor(SingletonClassApp.getInstance().procentMemory, true);
+        bar_circle.startAnim(0);
+        bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
     }
 
     @Override
@@ -122,9 +132,9 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
 
         LocalSharedUtil.setParameter(
                 new SharedData(SingletonClassApp.getInstance().procentMemory,
-                SingletonClassApp.getInstance().UsedMemory + " MB", ""+new Date().getTime()),
+                        SingletonClassApp.getInstance().UsedMemory + " MB", "" + new Date().getTime()),
                 Util.SHARED_STORAGE, getContext());
-        ((LinearLayout)text_memory_p.getParent()).setVisibility(View.VISIBLE);
+        ((LinearLayout) text_memory_p.getParent()).setVisibility(View.VISIBLE);
         imageLoadIcon.setVisibility(View.GONE);
         NavController controller = NavHostFragment.findNavController(PhoneBoosterFragment.this);
         controller.navigate(R.id.complete_fragment, null);

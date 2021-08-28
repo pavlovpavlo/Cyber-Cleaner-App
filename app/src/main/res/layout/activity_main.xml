@@ -9,6 +9,7 @@
     tools:context=".ui.MainActivity">
 
     <LinearLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
@@ -36,6 +37,7 @@
         app:navGraph="@navigation/navigation_main" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@drawable/ic_bottom_nav_bg"

@@ -1,5 +1,6 @@
 package com.cleaner.cybercleanerapp.ui.optimization_complete;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.cleaner.cybercleanerapp.R;
+import com.cleaner.cybercleanerapp.ui.MainActivity;
 import com.cleaner.cybercleanerapp.ui.junk_cleaner.JunkCleanerFragment;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.SharedData;
@@ -35,6 +37,15 @@ public class CompleteFragment extends Fragment {
     private TextView optimizationSecondText;
     private ProgressBar main_progress;
     private ImageView back_btn;
+    private MainActivity mainActivity;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivity) {
+            mainActivity = (MainActivity) context;
+        }
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -45,8 +56,14 @@ public class CompleteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        mainActivity.isHideToolbar(true);
         initViews(view);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mainActivity.isHideToolbar(false);
     }
 
     private void checkCountOptimized() {
@@ -79,7 +96,7 @@ public class CompleteFragment extends Fragment {
         checkCountOptimized();
     }
 
-    private void checkData() {
+    public void checkData() {
         checkElement(boosterItem, Util.SHARED_STORAGE);
         checkElement(batteryItem, Util.SHARED_BATTERY);
         checkElement(cpuItem, Util.SHARED_CPU);

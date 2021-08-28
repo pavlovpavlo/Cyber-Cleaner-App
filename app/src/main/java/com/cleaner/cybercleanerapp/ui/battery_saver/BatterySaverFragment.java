@@ -85,6 +85,17 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
     }
 
     @Override
+    public void fragmentIsOptimized(SharedData data) {
+        basicProcent = data.getPercent();
+        setData();
+        //bar_circle.optimizationComplete(basicProcent, true);
+        bar_circle.startAnim(0);
+        bar_circle.optimizationComplete(basicProcent, true);
+
+        batteryText.setText(basicProcent + " %");
+    }
+
+    @Override
     public void onOptimizationComplete() {
         basicProcent += 2;
         setData();

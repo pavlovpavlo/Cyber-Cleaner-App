@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView batteryItem;
     private ImageView cpuItem;
     private ImageView junkItem;
+    private LinearLayout toolbar;
+    private ConstraintLayout bottomNav;
 
     @Override
     public void onBackPressed() {
@@ -54,7 +56,19 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
 
+    public void isHideToolbar(boolean isHide){
+        if(isHide){
+            toolbar.setVisibility(View.VISIBLE);
+            bottomNav.setVisibility(View.VISIBLE);
+        }else{
+            toolbar.setVisibility(View.GONE);
+            bottomNav.setVisibility(View.GONE);
+        }
+    }
+
     private void initViews() {
+        toolbar = findViewById(R.id.toolbar);
+        bottomNav = findViewById(R.id.bottomNav);
         toolbarText = findViewById(R.id.toolbar_text);
         boosterItem = findViewById(R.id.storage_icon);
         batteryItem = findViewById(R.id.battery_icon);
@@ -98,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void checkData() {
+    public void checkData() {
         checkElement(boosterItem, Util.SHARED_STORAGE);
         checkElement(batteryItem, Util.SHARED_BATTERY);
         checkElement(cpuItem, Util.SHARED_CPU);

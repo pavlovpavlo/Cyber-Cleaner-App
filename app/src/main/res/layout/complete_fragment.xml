@@ -188,7 +188,7 @@
                     android:includeFontPadding="false"
                     android:text="Phone booster"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/complete_text_size" />
 
                 <ProgressBar
                     android:id="@+id/progressBoster"
@@ -261,7 +261,7 @@
                     android:includeFontPadding="false"
                     android:text="Battery saver"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/complete_text_size" />
 
                 <ProgressBar
                     android:id="@+id/progress_battery"
@@ -342,7 +342,7 @@
                     android:includeFontPadding="false"
                     android:text="CPU cooler"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/complete_text_size" />
 
                 <ProgressBar
                     android:id="@+id/progress_cpu"
@@ -414,7 +414,7 @@
                     android:includeFontPadding="false"
                     android:text="Junk cleaner"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/complete_text_size" />
 
                 <ProgressBar
                     android:id="@+id/progress_junk"

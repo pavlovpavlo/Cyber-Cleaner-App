@@ -324,6 +324,11 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     @Override
+    public void fragmentIsOptimized(SharedData data) {
+
+    }
+
+    @Override
     public void onOptimizationComplete() {
         bar_circle.startAnim(0);
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);

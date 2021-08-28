@@ -13,7 +13,7 @@ public class Util {
     public static final String SHARED_STORAGE = "cyber_cleaner_storage";
     public static final String SHARED_CPU = "cyber_cleaner_cpu";
     public static final String SHARED_JUNK = "cyber_cleaner_junk";
-    public static final float MAX_CPU_TEMP = 42.0f;
+    public static final float MAX_CPU_TEMP = 60.0f;
 
     public static int getBatteryPercentage(Context context) {
         BatteryManager bm = (BatteryManager) context.getSystemService(BATTERY_SERVICE);
