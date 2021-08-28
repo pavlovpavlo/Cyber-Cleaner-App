@@ -13,8 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.cleaner.cybercleanerapp.R;
+import com.cleaner.cybercleanerapp.ui.junk_cleaner.JunkCleanerFragment;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.SharedData;
 import com.cleaner.cybercleanerapp.util.Util;
@@ -31,6 +34,7 @@ public class CompleteFragment extends Fragment {
     private TextView countOptimizationText;
     private TextView optimizationSecondText;
     private ProgressBar main_progress;
+    private ImageView back_btn;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -62,6 +66,12 @@ public class CompleteFragment extends Fragment {
         cpuItem = view.findViewById(R.id.cpuItem);
         junkItem = view.findViewById(R.id.junkItem);
         main_progress = view.findViewById(R.id.main_progress);
+        back_btn = view.findViewById(R.id.back_btn);
+
+        back_btn.setOnClickListener(v -> {
+            NavController controller = NavHostFragment.findNavController(CompleteFragment.this);
+            controller.popBackStack();
+        });
 
         countOptimizationText = view.findViewById(R.id.count_optimization_text);
         optimizationSecondText = view.findViewById(R.id.optimization_second_text);
