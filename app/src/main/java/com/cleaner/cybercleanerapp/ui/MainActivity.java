@@ -2,11 +2,13 @@ package com.cleaner.cybercleanerapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -105,8 +107,19 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.cpu_cooler_fragment, null, navOptions2);
                     break;
                 case R.id.tab_junk:
-                    NavOptions navOptions3 = navBuilder.setPopUpTo(R.id.junk_cleaner_fragment, true).build();
-                    navController.navigate(R.id.junk_cleaner_fragment, null, navOptions3);
+
+
+                        if (ActivityCompat.checkSelfPermission(this,
+                                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                                ActivityCompat.checkSelfPermission(this,
+                                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                            android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                    110011);
+                        } else {
+                            NavOptions navOptions3 = navBuilder.setPopUpTo(R.id.junk_cleaner_fragment, true).build();
+                            navController.navigate(R.id.junk_cleaner_fragment, null, navOptions3);
+                        }
                     break;
             }
         }

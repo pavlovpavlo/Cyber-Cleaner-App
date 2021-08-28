@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 
 public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInterface {
     public static final int MSG_SYS_CACHE_BEGIN = 0x1001;
@@ -157,14 +158,21 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         bar_circle.setProgressСolor((int) (size * 100 / 100000000), true, getContext());
         text_total_size.setText(totalSize);
 
+        final int min = 40;
+        final int max = 70;
+        final int random = new Random().nextInt((max - min) + 1) + min;
+
         LocalSharedUtil.setParameter(
-                new SharedData(SingletonClassApp.getInstance().procentMemory,
+                new SharedData(random,
                         totalSize + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", ""+new Date().getTime()),
                 Util.SHARED_JUNK, getContext());
     }
 
     private void startScan() {
         bar_circle.setProgressСolor(50, true, getContext());
+
+
+
 
         SysCacheScanTask sysCacheScanTask = new SysCacheScanTask(new IScanCallback() {
             @Override

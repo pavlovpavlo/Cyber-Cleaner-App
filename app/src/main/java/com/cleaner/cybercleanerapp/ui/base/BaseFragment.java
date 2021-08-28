@@ -62,6 +62,11 @@ public class BaseFragment extends Fragment {
         image_blick = view.findViewById(R.id.image_blick);
         iv = view.findViewById(R.id.image_circle_1);
         imageLoadIcon = view.findViewById(R.id.loadIcon);
+
+
+
+
+
         button.setOnClickListener(v -> {
             if(isPermissionFragment) {
                 if (ActivityCompat.checkSelfPermission(getContext(),
