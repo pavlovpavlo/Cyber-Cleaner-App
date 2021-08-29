@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void isHideToolbar(boolean isHide){
         if(isHide){
-            toolbar.setVisibility(View.VISIBLE);
-            bottomNav.setVisibility(View.VISIBLE);
-        }else{
             toolbar.setVisibility(View.GONE);
             bottomNav.setVisibility(View.GONE);
+        }else{
+            toolbar.setVisibility(View.VISIBLE);
+            bottomNav.setVisibility(View.VISIBLE);
         }
     }
 

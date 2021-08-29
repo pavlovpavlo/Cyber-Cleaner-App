@@ -28,50 +28,60 @@ public class CircleView extends ConstraintLayout {
     private ConstraintLayout global_color;
     TextView valueTextView;
     ImageView delFilter;
+    Context context;
 
     public CircleView(Context context) {
         super(context);
+        this.context = context;
         init(context);
     }
 
     public CircleView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         init(context);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     public void setProgressСolor(int progress, boolean anim, Context context) {
-        if (progress<=33){
+        if (progress <= 33) {
             bar3.setVisibility(View.GONE);
             bar4.setVisibility(View.GONE);
             linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_green_light));
             global_color.setBackground(context.getDrawable(R.drawable.ic_green_light));
             bar2.setVisibility(View.VISIBLE);
-            bar2.setProgress(progress,anim);}
-        if (progress>33 && progress<=66){
+            bar2.setProgress(progress, anim);
+        }
+        if (progress > 33 && progress <= 66) {
             bar2.setVisibility(View.GONE);
             bar4.setVisibility(View.GONE);
             linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_purple_light));
             global_color.setBackground(context.getDrawable(R.drawable.ic_purple_light));
             bar3.setVisibility(View.VISIBLE);
-            bar3.setProgress(progress,anim);}
-        if (progress>66){
+            bar3.setProgress(progress, anim);
+        }
+        if (progress > 66) {
             bar2.setVisibility(View.GONE);
             bar3.setVisibility(View.GONE);
             bar4.setVisibility(View.VISIBLE);
             linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_red_light));
             global_color.setBackground(context.getDrawable(R.drawable.ic_red_light));
-            bar4.setProgress(progress,anim);}
-    }
-    public void optimizationComplete(int progress,boolean anim) {
-            bar3.setVisibility(View.GONE);
-            bar4.setVisibility(View.GONE);
-            bar2.setVisibility(View.VISIBLE);
-            bar2.setProgress(progress,anim);
+            bar4.setProgress(progress, anim);
+        }
     }
 
-    public void startAnim(int time){
-         RotateAnimation r = new RotateAnimation(0, 360,
+    public void optimizationComplete(int progress, boolean anim) {
+        bar3.setVisibility(View.GONE);
+        bar4.setVisibility(View.GONE);
+        bar2.setVisibility(View.VISIBLE);
+        bar2.setProgress(progress, anim);
+        linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_green_light));
+        global_color.setBackground(context.getDrawable(R.drawable.ic_green_light));
+
+    }
+
+    public void startAnim(int time) {
+        RotateAnimation r = new RotateAnimation(0, 360,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         r.setDuration(500);
         r.setInterpolator(new LinearInterpolator());
@@ -85,8 +95,8 @@ public class CircleView extends ConstraintLayout {
         bar2 = rootView.findViewById(R.id.bar2);
         bar3 = rootView.findViewById(R.id.bar3);
         bar4 = rootView.findViewById(R.id.bar4);
-        global_color=rootView.findViewById(R.id.global_color);
-        linearLayoutColor=rootView.findViewById(R.id.linearLayoutColor);
+        global_color = rootView.findViewById(R.id.global_color);
+        linearLayoutColor = rootView.findViewById(R.id.linearLayoutColor);
     }
 }
 

@@ -72,6 +72,8 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
         starAnimBtn();
         setData();
         new AsyncTaskList((MainActivity) getActivity(), this).execute();
+
+        checkElement(Util.SHARED_CPU);
     }
 
     public void setAppsList() {
@@ -83,7 +85,7 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-            LinearLayout programContainer = (LinearLayout)lLayoutInflater.inflate(R.layout.item_program_container, null);
+            LinearLayout programContainer = (LinearLayout) lLayoutInflater.inflate(R.layout.item_program_container, null);
             layoutParams.setMargins(15, 0, 15, 15);
             int countCell = countAll < countInRow ? countAll : countInRow;
             for (int j = 0; j < countCell; j++) {
@@ -91,17 +93,17 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
                 TextView text = program.findViewById(R.id.process_size);
                 ImageView image = program.findViewById(R.id.process_image);
                 View line = program.findViewById(R.id.line);
-                InstalledAppsInfoModel model = installedAppsInfo.get(i*countInRow + j);
+                InstalledAppsInfoModel model = installedAppsInfo.get(i * countInRow + j);
 
                 image.setImageDrawable(model.getInstalledAppsIcons());
                 text.setText(model.getInstalledAppsSize());
-                if(j == countCell-1)
+                if (j == countCell - 1)
                     line.setVisibility(View.GONE);
                 programContainer.addView(program);
             }
             countAll -= countCell;
 
-            containerApp.addView(programContainer,layoutParams);
+            containerApp.addView(programContainer, layoutParams);
         }
 
     }
@@ -120,7 +122,7 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
     @Override
     public void fragmentIsOptimized(SharedData data) {
         basicProcent = data.getPercent();
-        cpuTemp = (MAX_CPU_TEMP / 100) * basicProcent;
+        cpuTemp = (int) ((MAX_CPU_TEMP / 100) * basicProcent);
 
         setData();
         bar_circle.startAnim(0);
@@ -131,6 +133,8 @@ public class CPUCoolerFragment extends BaseFragment implements BaseFragmentInter
     public void onOptimizationComplete() {
         cpuTemp -= new Random().nextInt(3);
         basicProcent = (int) ((cpuTemp / MAX_CPU_TEMP) * 100);
+        if (basicProcent > 100)
+            basicProcent = 99;
         setData();
         bar_circle.startAnim(0);
         bar_circle.optimizationComplete(basicProcent, true);

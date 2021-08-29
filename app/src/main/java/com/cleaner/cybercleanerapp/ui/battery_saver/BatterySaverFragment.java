@@ -70,6 +70,7 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
         basicProcent = getBatteryPercentage(getActivity());
         starAnimBtn();
         setData();
+        checkElement(Util.SHARED_BATTERY);
     }
 
 
@@ -98,6 +99,8 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
     @Override
     public void onOptimizationComplete() {
         basicProcent += 2;
+        if (basicProcent > 100)
+            basicProcent = 99;
         setData();
         //bar_circle.optimizationComplete(basicProcent, true);
         bar_circle.startAnim(0);

@@ -16,6 +16,7 @@
             android:layout_height="48dp"
             android:background="@drawable/ic_circle_bg_cpu"
             app:cardCornerRadius="24dp"
+            android:padding="2dp"
             app:cardElevation="0dp">
 
             <ImageView

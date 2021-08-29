@@ -63,10 +63,6 @@ public class BaseFragment extends Fragment {
         iv = view.findViewById(R.id.image_circle_1);
         imageLoadIcon = view.findViewById(R.id.loadIcon);
 
-
-
-
-
         button.setOnClickListener(v -> {
             if(isPermissionFragment) {
                 if (ActivityCompat.checkSelfPermission(getContext(),
@@ -93,11 +89,12 @@ public class BaseFragment extends Fragment {
         starAnimBtn();
     }
 
-    private void checkElement(String sharedKey) {
+    public void checkElement(String sharedKey) {
         SharedData data = LocalSharedUtil.getParameter(sharedKey, getContext());
 
         boolean isOptimized = (Long.parseLong(data.getDate()) + 7_200_000) > new Date().getTime();
         if (isOptimized) {
+            setButtonOptimized();
             baseFragmentInterface.fragmentIsOptimized(data);
         }
     }

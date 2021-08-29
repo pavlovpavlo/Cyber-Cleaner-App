@@ -155,17 +155,14 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         Log.d("memo_clear", "" + size);
         String totalSize = CleanUtil.formatShortFileSize(getContext(), size);
         bar_circle.startAnim(0);
-        bar_circle.setProgressСolor((int) (size * 100 / 100000000), true, getContext());
+
         text_total_size.setText(totalSize);
 
         final int min = 40;
         final int max = 70;
         final int random = new Random().nextInt((max - min) + 1) + min;
 
-        LocalSharedUtil.setParameter(
-                new SharedData(random,
-                        totalSize + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", ""+new Date().getTime()),
-                Util.SHARED_JUNK, getContext());
+        bar_circle.setProgressСolor(random, true, getContext());
     }
 
     private void startScan() {
@@ -318,6 +315,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         bar_circle.startAnim(4000);
         setAnimeCircle(4, 0.9f);
         resetState();
+        checkElement(Util.SHARED_JUNK);
     }
 
     @Override
@@ -333,7 +331,8 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
 
     @Override
     public void fragmentIsOptimized(SharedData data) {
-
+        bar_circle.startAnim(0);
+        bar_circle.optimizationComplete(data.getPercent(), true);
     }
 
     @Override
@@ -342,6 +341,17 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
         ((LinearLayout)text_total_size.getParent()).setVisibility(View.GONE);
         imageLoadIcon.setVisibility(View.VISIBLE);
+
+        long size = getTotalSize();
+        final int min = 10;
+        final int max = 30;
+        final int random = new Random().nextInt((max - min) + 1) + min;
+        String totalSize = CleanUtil.formatShortFileSize(getContext(), size);
+        LocalSharedUtil.setParameter(
+                new SharedData(random,
+                        totalSize + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", ""+new Date().getTime()),
+                Util.SHARED_JUNK, getContext());
+
         NavController controller = NavHostFragment.findNavController(JunkCleanerFragment.this);
         controller.navigate(R.id.complete_fragment, null);
     }

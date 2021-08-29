@@ -99,6 +99,7 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
         memory_text_p = view_root.findViewById(R.id.memory_text_p);
         starAnimBtn();
         setMemory();
+        checkElement(Util.SHARED_STORAGE);
     }
 
     @Override
@@ -116,7 +117,7 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
     @Override
     public void fragmentIsOptimized(SharedData data) {
         SingletonClassApp.getInstance().procentMemory = data.getPercent();
-        SingletonClassApp.getInstance().UsedMemory = data.getValue().substring(0, data.getValue().indexOf(""));
+        SingletonClassApp.getInstance().UsedMemory = data.getValue().substring(0, data.getValue().indexOf(" "));
         setMemory();
         //bar_circle.setProgressСolor(SingletonClassApp.getInstance().procentMemory, true);
         bar_circle.startAnim(0);
