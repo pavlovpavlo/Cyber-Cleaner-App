@@ -4,8 +4,8 @@
     <dimen name="second_circle_size">190dp</dimen>
     <dimen name="progress_bar_size">158dp</dimen>
     <dimen name="booster_title_text">18sp</dimen>
-    <dimen name="booster_subtitle_text">10sp</dimen>
-    <dimen name="booster_count_text">9sp</dimen>
+    <dimen name="booster_subtitle_text">9sp</dimen>
+    <dimen name="booster_count_text">8sp</dimen>
     <dimen name="booster_icon_size">35dp</dimen>
     <dimen name="booster_dialog">135dp</dimen>
     <dimen name="booster_dialog_line_margin">20.5dp</dimen>
@@ -25,5 +25,5 @@
     <dimen name="complete_title_progress_size">15dp</dimen>
     <dimen name="complete_main_image_size">164dp</dimen>
     <dimen name="booster_second_text">14sp</dimen>
-    <dimen name="complete_text_size">14sp</dimen>
+    <dimen name="complete_text_size">13sp</dimen>
 </resources>
