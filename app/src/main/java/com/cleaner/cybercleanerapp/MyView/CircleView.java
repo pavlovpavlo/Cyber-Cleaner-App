@@ -47,26 +47,30 @@ public class CircleView extends ConstraintLayout {
         if (progress <= 33) {
             bar3.setVisibility(View.GONE);
             bar4.setVisibility(View.GONE);
+            try{
             linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_green_light));
             global_color.setBackground(context.getDrawable(R.drawable.ic_green_light));
             bar2.setVisibility(View.VISIBLE);
-            bar2.setProgress(progress, anim);
+            bar2.setProgress(progress, anim);}catch (NullPointerException e){}
         }
         if (progress > 33 && progress <= 66) {
             bar2.setVisibility(View.GONE);
             bar4.setVisibility(View.GONE);
+           try{
             linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_purple_light));
             global_color.setBackground(context.getDrawable(R.drawable.ic_purple_light));
             bar3.setVisibility(View.VISIBLE);
-            bar3.setProgress(progress, anim);
+            bar3.setProgress(progress, anim);}catch (NullPointerException e){}
         }
         if (progress > 66) {
+
             bar2.setVisibility(View.GONE);
             bar3.setVisibility(View.GONE);
             bar4.setVisibility(View.VISIBLE);
+            try{
             linearLayoutColor.setBackground(context.getDrawable(R.drawable.ic_red_light));
             global_color.setBackground(context.getDrawable(R.drawable.ic_red_light));
-            bar4.setProgress(progress, anim);
+            bar4.setProgress(progress, anim);}catch (NullPointerException e){}
         }
     }
 

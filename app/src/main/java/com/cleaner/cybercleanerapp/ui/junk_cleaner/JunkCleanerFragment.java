@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,7 +59,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     public static final String HANG_FLAG = "hanged";
 
     private Handler handler;
-
+    private LinearLayout btn_start;
     private HashMap<Integer, JunkGroup> mJunkGroups = null;
 
     private View view_root;
@@ -137,6 +138,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
                         break;
 
                     case MSG_OVERALL_CLEAN_FINISH:
+
                         checkCleanFinish();
                         break;
                 }
@@ -145,6 +147,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     private void checkCleanFinish() {
+        btn_start.setEnabled(true);
         bar_circle.startAnim(0);
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
 
@@ -154,6 +157,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     private void checkScanFinish() {
+        btn_start.setEnabled(true);
         long size = getTotalSize();
         Log.d("memo_clear", "" + size);
         String totalSize = CleanUtil.formatShortFileSize(getContext(), size);
@@ -170,7 +174,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     private void startScan() {
-
+        btn_start.setEnabled(false);
         mainActivity.isOptimizationActive = true;
         bar_circle.setProgressСolor(50, true, getContext());
 
@@ -248,6 +252,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     private void resetState() {
+        btn_start.setEnabled(false);
         mJunkGroups = new HashMap<>();
         // mCleanButton.setEnabled(true);
 
@@ -313,11 +318,13 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     private void initView() {
+
         text_total_size = view_root.findViewById(R.id.text_total_size);
     }
 
     @Override
     public void basicInit() {
+        btn_start=view_root.findViewById(R.id.btn_start);
         starAnimBtn();
         bar_circle.setProgressСolor(50, true, getContext());
         bar_circle.startAnim(4000);
@@ -334,6 +341,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     @Override
     public void optimizationClick() {
         ((LinearLayout)text_total_size.getParent()).setVisibility(View.GONE);
+
         imageLoadIcon.setVisibility(View.VISIBLE);
     }
 
