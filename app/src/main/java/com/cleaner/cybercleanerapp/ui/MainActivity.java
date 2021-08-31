@@ -25,13 +25,14 @@ import android.widget.TextView;
 import com.cleaner.cybercleanerapp.BuildConfig;
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.ui.exit.ExitDialog;
+import com.cleaner.cybercleanerapp.ui.exit.OnExitDialogListener;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.SharedData;
 import com.cleaner.cybercleanerapp.util.Util;
 
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnExitDialogListener {
 
     private View lastActiveView;
     public boolean isOptimizationActive = false;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             if (countGoodOptimized == 4) {
                 onTabClick(boosterTab);
             } else
-                ExitDialog.display(getSupportFragmentManager(), this);
+                ExitDialog.display(getSupportFragmentManager(), this, this);
         }
     }
 
@@ -229,6 +230,29 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.tab_junk:
                 imageView.setImageResource(R.drawable.ic_tab_junk);
+                break;
+        }
+    }
+
+    @Override
+    public void onQuitClick() {
+        finish();
+    }
+
+    @Override
+    public void onOptimizeClick(int tabId) {
+        switch (tabId) {
+            case R.id.tab_storage:
+                onTabClick(boosterTab);
+                break;
+            case R.id.tab_battery:
+                onTabClick(batteryTab);
+                break;
+            case R.id.tab_cpu:
+                onTabClick(cpuTab);
+                break;
+            case R.id.tab_junk:
+                onTabClick(junkTab);
                 break;
         }
     }
