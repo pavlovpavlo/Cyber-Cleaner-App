@@ -73,6 +73,9 @@ public class ExitDialog extends DialogFragment {
         view.findViewById(R.id.optimize).setOnClickListener(v -> {
             dismiss();
         });
+        view.findViewById(R.id.phone_booster).setOnClickListener(v -> {
+            dismiss();
+        });
         view.findViewById(R.id.content).setOnClickListener(v -> {
         });
 

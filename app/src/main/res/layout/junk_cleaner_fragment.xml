@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ubuntu_bold"
                     android:gravity="center"
-                    android:text="100%"
+                    android:text="0 MB"
                     android:textColor="@color/white"
                     android:textSize="@dimen/progress_main_text"
                     app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"

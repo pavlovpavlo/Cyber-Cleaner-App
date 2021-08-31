@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="40dp"/>
-    <gradient
-        android:startColor="#38B000"
-        android:angle="180"
-        android:endColor="#008000" />
-    <stroke android:width="2dp" android:color="#171717"/>
-</shape>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/white"
+    tools:targetApi="lollipop"> <!-- ripple effect color -->
+    <item android:id="@android:id/background">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <corners android:radius="40dp" />
+            <gradient
+                android:angle="180"
+                android:endColor="#008000"
+                android:startColor="#38B000" />
+            <stroke
+                android:width="2dp"
+                android:color="#171717" />
+        </shape>
+    </item>
+</ripple>
+
+

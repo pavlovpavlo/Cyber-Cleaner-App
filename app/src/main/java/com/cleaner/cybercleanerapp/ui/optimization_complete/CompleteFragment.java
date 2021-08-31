@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.cleaner.cybercleanerapp.R;
@@ -78,6 +79,8 @@ public class CompleteFragment extends Fragment {
     }
 
     private void initViews(View view) {
+        NavOptions.Builder navBuilder = new NavOptions.Builder();
+        NavController controller = NavHostFragment.findNavController(CompleteFragment.this);
         boosterItem = view.findViewById(R.id.phoneBoosterItem);
         batteryItem = view.findViewById(R.id.batteryItem);
         cpuItem = view.findViewById(R.id.cpuItem);
@@ -86,8 +89,24 @@ public class CompleteFragment extends Fragment {
         back_btn = view.findViewById(R.id.back_btn);
 
         back_btn.setOnClickListener(v -> {
-            NavController controller = NavHostFragment.findNavController(CompleteFragment.this);
             controller.popBackStack();
+        });
+
+        boosterItem.setOnClickListener(v -> {
+            mainActivity.onTabClick(mainActivity.boosterTab);
+            mainActivity.isHideToolbar(false);
+        });
+        batteryItem.setOnClickListener(v -> {
+            mainActivity.onTabClick(mainActivity.batteryTab);
+            mainActivity.isHideToolbar(false);
+        });
+        cpuItem.setOnClickListener(v -> {
+            mainActivity.onTabClick(mainActivity.cpuTab);
+            mainActivity.isHideToolbar(false);
+        });
+        junkItem.setOnClickListener(v -> {
+            mainActivity.onTabClick(mainActivity.junkTab);
+            mainActivity.isHideToolbar(false);
         });
 
         countOptimizationText = view.findViewById(R.id.count_optimization_text);

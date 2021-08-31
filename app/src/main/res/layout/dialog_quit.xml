@@ -40,6 +40,7 @@
             android:gravity="center">
 
             <LinearLayout
+                android:id="@+id/phone_booster"
                 android:layout_width="255dp"
                 android:layout_height="53dp"
                 android:background="@drawable/main_btn_bg"

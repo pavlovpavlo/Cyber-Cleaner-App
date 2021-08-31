@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseFragment extends Fragment {
     private View view;
-    private MainActivity mainActivity;
+    public MainActivity mainActivity;
     private BaseFragmentInterface baseFragmentInterface;
     private boolean isPermissionFragment;
     public CircleView bar_circle;
@@ -48,7 +48,7 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    public void onAttachFragment(View view, BaseFragmentInterface baseFragmentInterface, boolean isPermissionFragment){
+    public void onAttachFragment(View view, BaseFragmentInterface baseFragmentInterface, boolean isPermissionFragment) {
         this.view = view;
         this.baseFragmentInterface = baseFragmentInterface;
         this.isPermissionFragment = isPermissionFragment;
@@ -56,7 +56,7 @@ public class BaseFragment extends Fragment {
         baseFragmentInterface.basicInit();
     }
 
-    private void initViews(){
+    private void initViews() {
         bar_circle = view.findViewById(R.id.bar_new);
         button = view.findViewById(R.id.btn_start);
         image_blick = view.findViewById(R.id.image_blick);
@@ -64,25 +64,12 @@ public class BaseFragment extends Fragment {
         imageLoadIcon = view.findViewById(R.id.loadIcon);
 
         button.setOnClickListener(v -> {
-            if(isPermissionFragment) {
-                if (ActivityCompat.checkSelfPermission(getContext(),
-                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(getContext(),
-                                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            110011);
-                } else {
-                    startOptimization();
-                }
-            }else
+            if (!mainActivity.isOptimizationActive)
                 startOptimization();
-
-
         });
     }
 
-    private void startOptimization(){
+    private void startOptimization() {
         baseFragmentInterface.optimizationClick();
         bar_circle.startAnim(4000);
         getApp();
@@ -131,9 +118,9 @@ public class BaseFragment extends Fragment {
         mt.execute();
     }
 
-    public void setButtonOptimized(){
-        TextView buttonText = (TextView)button.getChildAt(0);
-        ImageView buttonImage = (ImageView)button.getChildAt(1);
+    public void setButtonOptimized() {
+        TextView buttonText = (TextView) button.getChildAt(0);
+        ImageView buttonImage = (ImageView) button.getChildAt(1);
 
         buttonText.setText("Optimized");
         button.setBackgroundResource(R.drawable.main_btn_bg_optimize);
@@ -162,7 +149,6 @@ public class BaseFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            if(mainActivity != null)
                 mainActivity.isOptimizationActive = true;
             baseFragmentInterface.optimization();
             try {
@@ -180,7 +166,6 @@ public class BaseFragment extends Fragment {
             mainActivity.checkData();
             setAnimeCircle(0, 1.0f);
             setButtonOptimized();
-            if(mainActivity != null)
                 mainActivity.isOptimizationActive = false;
         }
     }

@@ -147,7 +147,10 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     private void checkCleanFinish() {
         bar_circle.startAnim(0);
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
+
+        mainActivity.isOptimizationActive = true;
         startScan();
+
     }
 
     private void checkScanFinish() {
@@ -163,9 +166,12 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         final int random = new Random().nextInt((max - min) + 1) + min;
 
         bar_circle.setProgressСolor(random, true, getContext());
+        mainActivity.isOptimizationActive = false;
     }
 
     private void startScan() {
+
+        mainActivity.isOptimizationActive = true;
         bar_circle.setProgressСolor(50, true, getContext());
 
 
@@ -196,6 +202,8 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
                 }
                 Message msg = handler.obtainMessage(MSG_SYS_CACHE_FINISH);
                 msg.sendToTarget();
+
+                mainActivity.isOptimizationActive = false;
             }
         });
         sysCacheScanTask.execute();
@@ -349,7 +357,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         String totalSize = CleanUtil.formatShortFileSize(getContext(), size);
         LocalSharedUtil.setParameter(
                 new SharedData(random,
-                        totalSize + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", ""+new Date().getTime()),
+                        totalSize + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", ""+new Date().getTime()),
                 Util.SHARED_JUNK, getContext());
 
         NavController controller = NavHostFragment.findNavController(JunkCleanerFragment.this);

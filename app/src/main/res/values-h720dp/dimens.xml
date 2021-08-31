@@ -3,12 +3,12 @@
     <dimen name="first_circle_size">272dp</dimen>
     <dimen name="second_circle_size">240dp</dimen>
     <dimen name="progress_bar_size">208dp</dimen>
-    <dimen name="booster_title_text">32sp</dimen>
-    <dimen name="booster_subtitle_text">14sp</dimen>
+    <dimen name="booster_title_text">31sp</dimen>
+    <dimen name="booster_subtitle_text">13.5sp</dimen>
     <dimen name="booster_count_text">13sp</dimen>
     <dimen name="booster_icon_size">48dp</dimen>
     <dimen name="booster_dialog">175dp</dimen>
-    <dimen name="booster_dialog_line_margin">27.5dp</dimen>
+    <dimen name="booster_dialog_line_margin">26.5dp</dimen>
     <dimen name="battery_dialog_size">153dp</dimen>
     <dimen name="progress_container_bottom_margin">46dp</dimen>
     <dimen name="junk_dialog_size">123dp</dimen>

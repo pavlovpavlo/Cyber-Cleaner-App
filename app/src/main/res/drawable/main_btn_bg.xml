@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="50dp"/>
-    <gradient
-        android:startColor="#FF9900"
-        android:angle="180"
-        android:endColor="#E50000" />
-</shape>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/white"
+    tools:targetApi="lollipop"> <!-- ripple effect color -->
+    <item android:id="@android:id/background">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <corners android:radius="50dp"/>
+            <gradient
+                android:startColor="#FF9900"
+                android:angle="180"
+                android:endColor="#E50000" />
+        </shape>
+    </item>
+</ripple>
+

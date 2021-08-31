@@ -10,7 +10,11 @@ import androidx.navigation.Navigation;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.cleaner.cybercleanerapp.BuildConfig;
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.ui.exit.ExitDialog;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
@@ -36,8 +41,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageView batteryItem;
     private ImageView cpuItem;
     private ImageView junkItem;
+
+    public LinearLayout boosterTab;
+    public LinearLayout batteryTab;
+    public LinearLayout cpuTab;
+    public LinearLayout junkTab;
     private LinearLayout toolbar;
     private ConstraintLayout bottomNav;
+    private int countGoodOptimized = 0;
 
     @Override
     public void onBackPressed() {
@@ -46,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
         int prevFragId = navController.getCurrentBackStackEntry().getDestination().getId();
         if (prevFragId == R.id.complete_fragment)
             super.onBackPressed();
-        else
-            ExitDialog.display(getSupportFragmentManager(), this);
+        else {
+            if (countGoodOptimized == 4) {
+                onTabClick(boosterTab);
+            } else
+                ExitDialog.display(getSupportFragmentManager(), this);
+        }
     }
 
     @Override
@@ -58,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
 
-    public void isHideToolbar(boolean isHide){
-        if(isHide){
+    public void isHideToolbar(boolean isHide) {
+        if (isHide) {
             toolbar.setVisibility(View.GONE);
             bottomNav.setVisibility(View.GONE);
-        }else{
+        } else {
             toolbar.setVisibility(View.VISIBLE);
             bottomNav.setVisibility(View.VISIBLE);
         }
@@ -76,7 +91,13 @@ public class MainActivity extends AppCompatActivity {
         batteryItem = findViewById(R.id.battery_icon);
         cpuItem = findViewById(R.id.cpu_icon);
         junkItem = findViewById(R.id.junk_icon);
-        lastActiveView = findViewById(R.id.tab_storage);
+
+        boosterTab = findViewById(R.id.tab_storage);
+        batteryTab = findViewById(R.id.tab_battery);
+        cpuTab = findViewById(R.id.tab_cpu);
+        junkTab = findViewById(R.id.tab_junk);
+        lastActiveView = boosterTab;
+
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
@@ -86,9 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onTabClick(View view) {
         if (!isOptimizationActive) {
-            disableLastTab();
-            lastActiveView = view;
-            setActiveTab(view);
+            if (view.getId() != R.id.tab_junk) {
+                disableLastTab();
+                lastActiveView = view;
+                setActiveTab(view);
+            }
 
             NavOptions.Builder navBuilder = new NavOptions.Builder();
 
@@ -107,25 +130,43 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.cpu_cooler_fragment, null, navOptions2);
                     break;
                 case R.id.tab_junk:
-
-
-                        if (ActivityCompat.checkSelfPermission(this,
-                                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
-                                ActivityCompat.checkSelfPermission(this,
-                                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                            android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    110011);
-                        } else {
-                            NavOptions navOptions3 = navBuilder.setPopUpTo(R.id.junk_cleaner_fragment, true).build();
-                            navController.navigate(R.id.junk_cleaner_fragment, null, navOptions3);
-                        }
+                    if (!isPermissionDenied()) {
+                        disableLastTab();
+                        lastActiveView = view;
+                        setActiveTab(view);
+                        NavOptions navOptions3 = navBuilder.setPopUpTo(R.id.junk_cleaner_fragment, true).build();
+                        navController.navigate(R.id.junk_cleaner_fragment, null, navOptions3);
+                    }
                     break;
             }
         }
     }
 
+    private boolean isPermissionDenied() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (!Environment.isExternalStorageManager()) {
+                Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
+                startActivity(new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri));
+                return true;
+            }
+            return false;
+        } else {
+            if (ActivityCompat.checkSelfPermission(this,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this,
+                            android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        110011);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     public void checkData() {
+        countGoodOptimized = 0;
         checkElement(boosterItem, Util.SHARED_STORAGE);
         checkElement(batteryItem, Util.SHARED_BATTERY);
         checkElement(cpuItem, Util.SHARED_CPU);
@@ -137,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
         boolean isOptimized = (Long.parseLong(data.getDate()) + 7_200_000) > new Date().getTime();
         if (isOptimized) {
+            countGoodOptimized++;
             image.setVisibility(View.GONE);
         } else {
             image.setVisibility(View.VISIBLE);

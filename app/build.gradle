@@ -11,6 +11,7 @@ android {
     defaultConfig {
         applicationId "com.cleaner.cybercleanerapp"
         minSdkVersion 23
+        maxSdkVersion 29
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"

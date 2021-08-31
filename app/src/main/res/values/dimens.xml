@@ -8,7 +8,7 @@
     <dimen name="booster_count_text">8sp</dimen>
     <dimen name="booster_icon_size">35dp</dimen>
     <dimen name="booster_dialog">135dp</dimen>
-    <dimen name="booster_dialog_line_margin">20.5dp</dimen>
+    <dimen name="booster_dialog_line_margin">18dp</dimen>
     <dimen name="battery_dialog_size">113dp</dimen>
     <dimen name="progress_container_bottom_margin">36dp</dimen>
     <dimen name="progress_container_top_margin">10dp</dimen>
