@@ -94,11 +94,11 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
                         break;
 
                     case MSG_SYS_CACHE_FINISH:
-                        checkScanFinish();
+                      //  checkScanFinish();
                         break;
 
                     case MSG_SYS_CACHE_CLEAN_FINISH:
-                        checkCleanFinish();
+                       // checkCleanFinish();
                         Bundle bundle = msg.getData();
                         if (bundle != null) {
                             boolean hanged = bundle.getBoolean(HANG_FLAG, false);
@@ -120,11 +120,11 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
                         break;
 
                     case MSG_PROCESS_FINISH:
-                        checkScanFinish();
+                      //  checkScanFinish();
                         break;
 
                     case MSG_PROCESS_CLEAN_FINISH:
-                        checkCleanFinish();
+                      //  checkCleanFinish();
                         break;
 
                     case MSG_OVERALL_BEGIN:
@@ -177,7 +177,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         btn_start.setEnabled(false);
         mainActivity.isOptimizationActive = true;
         bar_circle.setProgressСolor(50, true, getContext());
-
+        bar_circle.startAnim(200000);
 
 
 
@@ -327,7 +327,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         btn_start=view_root.findViewById(R.id.btn_start);
         starAnimBtn();
         bar_circle.setProgressСolor(50, true, getContext());
-        bar_circle.startAnim(4000);
+        bar_circle.startAnim(8000);
         setAnimeCircle(4, 0.9f);
         resetState();
         checkElement(Util.SHARED_JUNK);
@@ -340,20 +340,20 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
 
     @Override
     public void optimizationClick() {
+        bar_circle.startAnim(0);
         ((LinearLayout)text_total_size.getParent()).setVisibility(View.GONE);
-
         imageLoadIcon.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void fragmentIsOptimized(SharedData data) {
-        bar_circle.startAnim(0);
+     //   bar_circle.startAnim(0);
         bar_circle.optimizationComplete(data.getPercent(), true);
     }
 
     @Override
     public void onOptimizationComplete() {
-        bar_circle.startAnim(0);
+      //  bar_circle.startAnim(0);
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
         ((LinearLayout)text_total_size.getParent()).setVisibility(View.GONE);
         imageLoadIcon.setVisibility(View.VISIBLE);
