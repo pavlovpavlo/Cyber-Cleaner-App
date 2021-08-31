@@ -5,22 +5,18 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import com.cleaner.cybercleanerapp.MyView.CircleView;
 import com.cleaner.cybercleanerapp.R;
+import com.cleaner.cybercleanerapp.custom_view.CircleView;
 import com.cleaner.cybercleanerapp.ui.MainActivity;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.SharedData;
@@ -149,7 +145,7 @@ public class BaseFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-                mainActivity.isOptimizationActive = true;
+            mainActivity.isOptimizationActive = true;
             baseFragmentInterface.optimization();
             try {
                 TimeUnit.MILLISECONDS.sleep(4000);
@@ -166,7 +162,7 @@ public class BaseFragment extends Fragment {
             mainActivity.checkData();
             setAnimeCircle(0, 1.0f);
             setButtonOptimized();
-                mainActivity.isOptimizationActive = false;
+            mainActivity.isOptimizationActive = false;
         }
     }
 }

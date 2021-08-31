@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -96,19 +95,19 @@ public class ExitDialog extends DialogFragment {
     }
 
     public void checkData() {
-        if(!checkElement(Util.SHARED_STORAGE)){
+        if (!checkElement(Util.SHARED_STORAGE)) {
             optimizationTab = R.id.tab_storage;
             optimizationText = "Phone booster";
-        }else{
-            if(!checkElement(Util.SHARED_BATTERY)){
+        } else {
+            if (!checkElement(Util.SHARED_BATTERY)) {
                 optimizationTab = R.id.tab_battery;
                 optimizationText = "Battery Saver";
-            }else{
-                if(!checkElement(Util.SHARED_CPU)){
+            } else {
+                if (!checkElement(Util.SHARED_CPU)) {
                     optimizationTab = R.id.tab_cpu;
                     optimizationText = "CPU Cooler";
-                }else{
-                    if(!checkElement(Util.SHARED_JUNK)){
+                } else {
+                    if (!checkElement(Util.SHARED_JUNK)) {
                         optimizationTab = R.id.tab_junk;
                         optimizationText = "Junk Cleaner";
                     }

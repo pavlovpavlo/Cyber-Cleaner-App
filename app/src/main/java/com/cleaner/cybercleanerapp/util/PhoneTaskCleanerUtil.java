@@ -14,7 +14,7 @@ import eu.chainfire.libsuperuser.Shell;
 import static android.content.Context.ACTIVITY_SERVICE;
 
 public class PhoneTaskCleanerUtil {
-    public static void clearBackgroundTasks(Context context){
+    public static void clearBackgroundTasks(Context context) {
         PackageManager pm = context.getPackageManager();
         List<String> stdout = Shell.SH.run("ps");
         List<String> packages = new ArrayList<>();
@@ -44,7 +44,7 @@ public class PhoneTaskCleanerUtil {
             } catch (Exception e) {
             }
             final MemStat memStat = new MemStat(context);
-            SingletonClassApp.getInstance().UsedMemory = String.valueOf((int)memStat.getUsedMemory());
+            SingletonClassApp.getInstance().UsedMemory = String.valueOf((int) memStat.getUsedMemory());
             SingletonClassApp.getInstance().TotalMemory = String.valueOf(memStat.getTotalMemory());
             SingletonClassApp.getInstance().procentMemory = 100 - memStat.getProcentMemory();
         }

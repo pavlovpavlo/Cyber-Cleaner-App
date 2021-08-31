@@ -59,7 +59,7 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
         timeBattery.setText(h + " h " + m + " m");
         batteryText.setText(basicProcent + " %");
 
-        bar_circle.setProgressСolor(basicProcent, true,getContext());
+        bar_circle.setProgressСolor(basicProcent, true, getContext());
     }
 
 
@@ -110,7 +110,7 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
 
         LocalSharedUtil.setParameter(
                 new SharedData(basicProcent,
-                        basicProcent + " %", ""+new Date().getTime()),
+                        basicProcent + " %", "" + new Date().getTime()),
                 Util.SHARED_BATTERY, getContext());
 
         batteryText.setVisibility(View.VISIBLE);

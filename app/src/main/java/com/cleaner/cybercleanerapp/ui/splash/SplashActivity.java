@@ -73,11 +73,11 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Log.e("mamory", memStat.getUsedMemory() + "/" + memStat.getTotalMemory());
-                        SingletonClassApp.getInstance().UsedMemory = String.valueOf((int)memStat.getUsedMemory());
+                        SingletonClassApp.getInstance().UsedMemory = String.valueOf((int) memStat.getUsedMemory());
                         SingletonClassApp.getInstance().TotalMemory = String.valueOf(memStat.getTotalMemory());
-                        SingletonClassApp.getInstance().procentMemory= 100 - memStat.getProcentMemory();
-                        SingletonClassApp.getInstance().UsedMemoryInt=memStat.getUsedMemoryLong();
-                        SingletonClassApp.getInstance().TotalMemoryInt=memStat.getTotalMemoryLong();
+                        SingletonClassApp.getInstance().procentMemory = 100 - memStat.getProcentMemory();
+                        SingletonClassApp.getInstance().UsedMemoryInt = memStat.getUsedMemoryLong();
+                        SingletonClassApp.getInstance().TotalMemoryInt = memStat.getTotalMemoryLong();
                         baseInitOptimizationData();
 
                     }
@@ -88,26 +88,26 @@ public class SplashActivity extends AppCompatActivity {
         thread.start();
     }
 
-    private void baseInitOptimizationData(){
-        if(!isCurrentEmpty(Util.SHARED_STORAGE)) {
+    private void baseInitOptimizationData() {
+        if (!isCurrentEmpty(Util.SHARED_STORAGE)) {
             LocalSharedUtil.setParameter(
                     new SharedData(SingletonClassApp.getInstance().procentMemory,
                             SingletonClassApp.getInstance().UsedMemory + " MB", "" + (new Date().getTime() - 7_200_000)),
                     Util.SHARED_STORAGE, getApplicationContext());
         }
-        if(!isCurrentEmpty(Util.SHARED_BATTERY)) {
+        if (!isCurrentEmpty(Util.SHARED_BATTERY)) {
             LocalSharedUtil.setParameter(
                     new SharedData(getBatteryPercentage(getApplicationContext()),
                             getBatteryPercentage(getApplicationContext()) + " %", "" + (new Date().getTime() - 7_200_000)),
                     Util.SHARED_BATTERY, getApplicationContext());
         }
-        if(!isCurrentEmpty(Util.SHARED_JUNK)) {
+        if (!isCurrentEmpty(Util.SHARED_JUNK)) {
             LocalSharedUtil.setParameter(
                     new SharedData(SingletonClassApp.getInstance().procentMemory,
                             SingletonClassApp.getInstance().UsedMemory + " MB" + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", "" + (new Date().getTime() - 7_200_000)),
                     Util.SHARED_JUNK, getApplicationContext());
         }
-        if(!isCurrentEmpty(Util.SHARED_CPU)) {
+        if (!isCurrentEmpty(Util.SHARED_CPU)) {
             float cpuTemp = cpuTemperature();
             int basicProcent = (int) ((cpuTemp / MAX_CPU_TEMP) * 100);
             LocalSharedUtil.setParameter(
@@ -117,10 +117,10 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isCurrentEmpty(String sharedKey){
+    private boolean isCurrentEmpty(String sharedKey) {
         SharedData data = LocalSharedUtil.getParameter(sharedKey, this);
 
-        return (data!= null && (Long.parseLong(data.getDate()) + 7_200_000) > new Date().getTime());
+        return (data != null && (Long.parseLong(data.getDate()) + 7_200_000) > new Date().getTime());
     }
 
 }

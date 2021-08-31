@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements OnExitDialogListe
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         int prevFragId = navController.getCurrentBackStackEntry().getDestination().getId();
+        if (prevFragId == R.id.phone_booster_fragment)
+            finish();
         if (prevFragId == R.id.complete_fragment)
             super.onBackPressed();
         else {

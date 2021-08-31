@@ -65,7 +65,7 @@ public class SysCacheScanTask extends AsyncTask<Void, Void, Void> {
                     .getMethod("getPackageSizeInfo", String.class, IPackageStatsObserver.class);
 
             getPackageSizeInfo.invoke(pm, packageName, observer);
-        } catch (NoSuchMethodException e ) {
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();

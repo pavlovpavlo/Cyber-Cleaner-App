@@ -27,10 +27,10 @@ public class Util {
             process.waitFor();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = reader.readLine();
-            if(line!=null) {
+            if (line != null) {
                 float temp = Float.parseFloat(line);
                 return temp / 1000.0f;
-            }else{
+            } else {
                 return 51.0f;
             }
         } catch (Exception e) {

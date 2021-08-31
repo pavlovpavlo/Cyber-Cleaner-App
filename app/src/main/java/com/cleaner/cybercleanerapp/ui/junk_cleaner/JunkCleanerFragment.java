@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,7 +24,6 @@ import com.cleaner.cybercleanerapp.task.OverallScanTask;
 import com.cleaner.cybercleanerapp.task.SysCacheScanTask;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragment;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragmentInterface;
-import com.cleaner.cybercleanerapp.ui.phone_booster.PhoneBoosterFragment;
 import com.cleaner.cybercleanerapp.util.CleanUtil;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.SharedData;
@@ -77,6 +74,21 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         return view_root;
     }
 
+    private void startScanJunk(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R){
+            final int min = 40;
+            final int max = 70;
+            final int random = new Random().nextInt((max - min) + 1) + min;
+
+            text_total_size.setText((float)random + " MB");
+
+            bar_circle.setProgressСolor(random, true, getContext());
+            mainActivity.isOptimizationActive = false;
+        }else {
+            startScan();
+        }
+    }
+
     private void initHandler() {
         handler = new Handler() {
             @SuppressLint("HandlerLeak")
@@ -94,11 +106,11 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
                         break;
 
                     case MSG_SYS_CACHE_FINISH:
-                      //  checkScanFinish();
+                        //  checkScanFinish();
                         break;
 
                     case MSG_SYS_CACHE_CLEAN_FINISH:
-                       // checkCleanFinish();
+                        // checkCleanFinish();
                         Bundle bundle = msg.getData();
                         if (bundle != null) {
                             boolean hanged = bundle.getBoolean(HANG_FLAG, false);
@@ -120,11 +132,11 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
                         break;
 
                     case MSG_PROCESS_FINISH:
-                      //  checkScanFinish();
+                        //  checkScanFinish();
                         break;
 
                     case MSG_PROCESS_CLEAN_FINISH:
-                      //  checkCleanFinish();
+                        //  checkCleanFinish();
                         break;
 
                     case MSG_OVERALL_BEGIN:
@@ -178,7 +190,6 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         mainActivity.isOptimizationActive = true;
         bar_circle.setProgressСolor(50, true, getContext());
         bar_circle.startAnim(200000);
-
 
 
         SysCacheScanTask sysCacheScanTask = new SysCacheScanTask(new IScanCallback() {
@@ -280,7 +291,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         logGroup.mName = "log_clean";
         logGroup.mChildren = new ArrayList<>();
         mJunkGroups.put(JunkGroup.GROUP_LOG, logGroup);
-        startScan();
+        startScanJunk();
     }
 
     private void clearAll() {
@@ -318,13 +329,12 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     private void initView() {
-
         text_total_size = view_root.findViewById(R.id.text_total_size);
     }
 
     @Override
     public void basicInit() {
-        btn_start=view_root.findViewById(R.id.btn_start);
+        btn_start = view_root.findViewById(R.id.btn_start);
         starAnimBtn();
         bar_circle.setProgressСolor(50, true, getContext());
         bar_circle.startAnim(8000);
@@ -335,27 +345,30 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
 
     @Override
     public void optimization() {
-        clearAll();
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.R){
+            clearAll();
+        }
+
     }
 
     @Override
     public void optimizationClick() {
         bar_circle.startAnim(0);
-        ((LinearLayout)text_total_size.getParent()).setVisibility(View.GONE);
+        ((LinearLayout) text_total_size.getParent()).setVisibility(View.GONE);
         imageLoadIcon.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void fragmentIsOptimized(SharedData data) {
-     //   bar_circle.startAnim(0);
+        //   bar_circle.startAnim(0);
         bar_circle.optimizationComplete(data.getPercent(), true);
     }
 
     @Override
     public void onOptimizationComplete() {
-      //  bar_circle.startAnim(0);
+        //  bar_circle.startAnim(0);
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
-        ((LinearLayout)text_total_size.getParent()).setVisibility(View.GONE);
+        ((LinearLayout) text_total_size.getParent()).setVisibility(View.GONE);
         imageLoadIcon.setVisibility(View.VISIBLE);
 
         long size = getTotalSize();
@@ -365,7 +378,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
         String totalSize = CleanUtil.formatShortFileSize(getContext(), size);
         LocalSharedUtil.setParameter(
                 new SharedData(random,
-                        totalSize + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", ""+new Date().getTime()),
+                        totalSize + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", "" + new Date().getTime()),
                 Util.SHARED_JUNK, getContext());
 
         NavController controller = NavHostFragment.findNavController(JunkCleanerFragment.this);

@@ -16,7 +16,7 @@ public class LocalSharedUtil {
         editor.apply();
     }
 
-    public static SharedData getParameter(String key, Context context){
+    public static SharedData getParameter(String key, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         Gson gson = new Gson();
         return gson.fromJson(preferences.getString(key, ""), SharedData.class);

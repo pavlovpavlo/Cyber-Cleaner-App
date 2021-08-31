@@ -3,7 +3,6 @@ package com.cleaner.cybercleanerapp.task;
 import android.os.AsyncTask;
 import android.os.Environment;
 
-
 import com.cleaner.cybercleanerapp.callback.IScanCallback;
 import com.cleaner.cybercleanerapp.model.JunkInfo;
 

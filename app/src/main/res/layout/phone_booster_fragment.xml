@@ -36,7 +36,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/linearLayoutColor" />
 
-            <com.cleaner.cybercleanerapp.MyView.CircleView
+            <com.cleaner.cybercleanerapp.custom_view.CircleView
                 android:id="@+id/bar_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,17 +45,18 @@
                 app:layout_constraintStart_toStartOf="@+id/image_circle_1"
                 app:layout_constraintTop_toTopOf="@+id/image_circle_1">
 
-            </com.cleaner.cybercleanerapp.MyView.CircleView>
+            </com.cleaner.cybercleanerapp.custom_view.CircleView>
 
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
                 app:layout_constraintEnd_toEndOf="@+id/image_circle_1"
                 app:layout_constraintStart_toStartOf="@+id/image_circle_1"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutColor"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutColor">
+
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
@@ -123,17 +124,18 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
+
             <ImageView
                 android:id="@+id/loadIcon"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
+                android:padding="20dp"
                 android:src="@drawable/ic_tab_storage_active"
                 android:visibility="gone"
-                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/image_circle_1"
-                app:layout_constraintBottom_toBottomOf="@+id/image_circle_1"/>
+                app:layout_constraintTop_toTopOf="@+id/image_circle_1" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -261,9 +263,9 @@
         <LinearLayout
             android:layout_width="2dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/booster_dialog_line_margin"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/booster_dialog_line_margin"
-            android:layout_marginStart="@dimen/booster_dialog_line_margin"
             android:layout_marginBottom="16dp"
             android:background="#5C6A6A6A"
             android:orientation="horizontal" />

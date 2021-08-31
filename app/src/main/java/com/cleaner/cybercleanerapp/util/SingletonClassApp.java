@@ -1,26 +1,23 @@
 package com.cleaner.cybercleanerapp.util;
-import android.content.Intent;
 
 import java.io.Serializable;
 
 public class SingletonClassApp implements Serializable {
 
     private static volatile SingletonClassApp sSoleInstance;
-    public String UsedMemory="";
-    public String TotalMemory="";
+    public String UsedMemory = "";
+    public String TotalMemory = "";
     public Integer procentMemory = 0;
     public long UsedMemoryInt = 0;
     public long TotalMemoryInt = 0;
+
     //private constructor.
-    private SingletonClassApp(){
+    private SingletonClassApp() {
         //Prevent form the reflection api.
-        if (sSoleInstance != null){
+        if (sSoleInstance != null) {
             throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
         }
     }
-
-
-
 
     public static SingletonClassApp getInstance() {
         if (sSoleInstance == null) { //if there is no instance available... create new one

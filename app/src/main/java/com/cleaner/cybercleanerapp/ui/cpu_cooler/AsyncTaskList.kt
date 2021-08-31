@@ -23,7 +23,7 @@ class AsyncTaskList(private var activity: AppCompatActivity, var fragment: CPUCo
             } else if (app.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
             } else {
                 val apps_installed = InstalledAppsInfoModel((appsSizeFile / 1000000 + 20).toString() + "MB", icon)
-                    fragment.installedAppsInfo.add(apps_installed)
+                fragment.installedAppsInfo.add(apps_installed)
             }
         }
         return null

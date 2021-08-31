@@ -4,7 +4,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 
-
 import com.cleaner.cybercleanerapp.MyApplication;
 import com.cleaner.cybercleanerapp.callback.IScanCallback;
 import com.cleaner.cybercleanerapp.model.JunkInfo;

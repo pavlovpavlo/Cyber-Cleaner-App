@@ -9,7 +9,7 @@ import java.io.File;
 /**
  * Created by mazhuang on 2016/12/8.
  * ref: https://www.liaohuqiu.net/cn/posts/storage-in-android/
- *      http://chroya.iteye.com/blog/760821
+ * http://chroya.iteye.com/blog/760821
  */
 
 public class DiskStat {

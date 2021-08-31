@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
 
-
 import com.cleaner.cybercleanerapp.MyApplication;
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.model.JunkInfo;
@@ -137,7 +136,7 @@ public class CleanUtil {
             return;
         }
 
-        ActivityManager am = (ActivityManager)MyApplication.getInstance()
+        ActivityManager am = (ActivityManager) MyApplication.getInstance()
                 .getSystemService(Context.ACTIVITY_SERVICE);
         am.killBackgroundProcesses(packageName);
     }

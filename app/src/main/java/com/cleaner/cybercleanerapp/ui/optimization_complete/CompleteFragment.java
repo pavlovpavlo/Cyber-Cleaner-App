@@ -20,7 +20,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.cleaner.cybercleanerapp.R;
 import com.cleaner.cybercleanerapp.ui.MainActivity;
-import com.cleaner.cybercleanerapp.ui.junk_cleaner.JunkCleanerFragment;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.SharedData;
 import com.cleaner.cybercleanerapp.util.Util;

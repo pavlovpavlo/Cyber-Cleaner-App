@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/bg_gradient"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="44dp">
+
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:padding="10dp"
             android:layout_marginStart="6dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:padding="10dp"
+            android:src="@drawable/ic_arrow_left"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/ic_arrow_left"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/toolbar_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/ubuntu_regular"
-            android:includeFontPadding="false"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:includeFontPadding="false"
             android:text="Completed"
             android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="22sp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
         android:background="@drawable/bg_gradient_item"
+        android:gravity="center"
         android:includeFontPadding="false"
+        android:orientation="vertical"
         android:paddingTop="@dimen/progress_container_top_margin"
         android:paddingBottom="@dimen/progress_complete_bottom_margin">
 
@@ -84,13 +84,13 @@
             android:id="@+id/main_progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_marginTop="19dp"
             android:layout_height="@dimen/complete_title_progress_size"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="37dp"
             android:progress="0"
             android:progressDrawable="@drawable/bg_progress"
-            android:layout_marginStart="37dp"
-            android:layout_marginEnd="37dp"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/count_optimization_text"
@@ -134,52 +134,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
         android:orientation="horizontal">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/phoneBoosterItem"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingEnd="16dp"
-            android:paddingBottom="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_complete_fiol"
             android:paddingStart="16dp"
             android:paddingTop="12dp"
-            android:background="@drawable/ic_complete_fiol">
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp">
+
             <ImageView
                 android:id="@+id/imageBooster"
                 android:layout_width="@dimen/booster_icon_size"
                 android:layout_height="@dimen/booster_icon_size"
-                app:layout_constraintTop_toTopOf="parent"
                 android:background="@drawable/ic_circle_bg_fiol"
-                app:layout_constraintStart_toStartOf="parent"
                 android:padding="10dp"
-                android:src="@drawable/ic_tab_storage_active" />
+                android:src="@drawable/ic_tab_storage_active"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/labelBooster"
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
-                android:includeFontPadding="false"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
                 android:background="@drawable/ic_cleaning_required_btn"
                 android:fontFamily="@font/ubuntu_medium"
                 android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
 
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:text="cleaning required"
                 android:textColor="@color/white"
-                android:textSize="9sp" />
+                android:textSize="9sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/imageBooster"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="@dimen/margin_end_conteiner_complete"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageBooster">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -211,48 +215,52 @@
                     android:textSize="@dimen/booster_count_text" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/batteryItem"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingEnd="16dp"
-            android:paddingBottom="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_complete_fiol"
             android:paddingStart="16dp"
             android:paddingTop="12dp"
-            android:background="@drawable/ic_complete_fiol">
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp">
+
             <ImageView
                 android:id="@+id/image_battery"
                 android:layout_width="@dimen/booster_icon_size"
                 android:layout_height="@dimen/booster_icon_size"
-                app:layout_constraintTop_toTopOf="parent"
                 android:background="@drawable/ic_circle_bg_fiol"
-                app:layout_constraintStart_toStartOf="parent"
                 android:padding="10dp"
-                android:src="@drawable/ic_tab_battery_active" />
+                android:src="@drawable/ic_tab_battery_active"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
-                android:includeFontPadding="false"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
                 android:background="@drawable/ic_cleaning_required_btn"
                 android:fontFamily="@font/ubuntu_medium"
                 android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
 
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:text="cleaning required"
                 android:textColor="@color/white"
-                android:textSize="9sp" />
+                android:textSize="9sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/image_battery"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_battery">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -289,51 +297,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
         android:orientation="horizontal">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cpuItem"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingEnd="16dp"
-            android:paddingBottom="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_complete_fiol"
             android:paddingStart="16dp"
             android:paddingTop="12dp"
-            android:background="@drawable/ic_complete_fiol">
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp">
+
             <ImageView
                 android:id="@+id/image_cpu"
                 android:layout_width="@dimen/booster_icon_size"
                 android:layout_height="@dimen/booster_icon_size"
-                app:layout_constraintTop_toTopOf="parent"
                 android:background="@drawable/ic_circle_bg_fiol"
-                app:layout_constraintStart_toStartOf="parent"
                 android:padding="10dp"
-                android:src="@drawable/ic_tab_cpu_active" />
+                android:src="@drawable/ic_tab_cpu_active"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
-                android:includeFontPadding="false"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
                 android:background="@drawable/ic_cleaning_required_btn"
                 android:fontFamily="@font/ubuntu_medium"
                 android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
 
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:text="cleaning required"
                 android:textColor="@color/white"
-                android:textSize="9sp" />
+                android:textSize="9sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/image_cpu"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_cpu">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -364,48 +376,52 @@
                     android:textSize="@dimen/booster_count_text" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/junkItem"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingEnd="16dp"
-            android:paddingBottom="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_complete_fiol"
             android:paddingStart="16dp"
             android:paddingTop="12dp"
-            android:background="@drawable/ic_complete_fiol">
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp">
+
             <ImageView
                 android:id="@+id/image_junk"
                 android:layout_width="@dimen/booster_icon_size"
                 android:layout_height="@dimen/booster_icon_size"
-                app:layout_constraintTop_toTopOf="parent"
                 android:background="@drawable/ic_circle_bg_fiol"
-                app:layout_constraintStart_toStartOf="parent"
                 android:padding="10dp"
-                android:src="@drawable/ic_tab_junk_active" />
+                android:src="@drawable/ic_tab_junk_active"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
-                android:includeFontPadding="false"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
                 android:background="@drawable/ic_cleaning_required_btn"
                 android:fontFamily="@font/ubuntu_medium"
                 android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
 
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:text="cleaning required"
                 android:textColor="@color/white"
-                android:textSize="9sp" />
+                android:textSize="9sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/image_junk"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_junk">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

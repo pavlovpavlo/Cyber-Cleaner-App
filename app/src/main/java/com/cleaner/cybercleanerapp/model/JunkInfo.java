@@ -1,7 +1,6 @@
 package com.cleaner.cybercleanerapp.model;
 
 
-
 import com.cleaner.cybercleanerapp.MyApplication;
 import com.cleaner.cybercleanerapp.R;
 
