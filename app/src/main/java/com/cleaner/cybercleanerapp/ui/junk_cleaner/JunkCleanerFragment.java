@@ -374,14 +374,15 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     public void onOptimizationComplete() {
         //  bar_circle.startAnim(0);
         bar_circle.optimizationComplete(SingletonClassApp.getInstance().procentMemory, true);
-        ((LinearLayout) text_total_size.getParent()).setVisibility(View.GONE);
-        imageLoadIcon.setVisibility(View.VISIBLE);
+        ((LinearLayout) text_total_size.getParent()).setVisibility(View.VISIBLE);
+        imageLoadIcon.setVisibility(View.GONE);
 
         long size = getTotalSize();
         final int min = 10;
         final int max = 30;
         final int random = new Random().nextInt((max - min) + 1) + min;
         String totalSize = CleanUtil.formatShortFileSize(getContext(), size);
+        text_total_size.setText(totalSize);
         LocalSharedUtil.setParameter(
                 new SharedData(random,
                         totalSize + "/" + SingletonClassApp.getInstance().TotalMemory + " GB", "" + new Date().getTime()),
