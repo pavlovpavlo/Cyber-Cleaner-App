@@ -67,24 +67,30 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
                              @Nullable Bundle savedInstanceState) {
         view_root = inflater.inflate(R.layout.junk_cleaner_fragment, container, false);
 
+        initView();
         initHandler();
         onAttachFragment(view_root, this, true);
-        initView();
+
 
         return view_root;
     }
 
     private void startScanJunk(){
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R){
+            btn_start.setEnabled(true);
             final int min = 40;
             final int max = 70;
             final int random = new Random().nextInt((max - min) + 1) + min;
 
             text_total_size.setText((float)random + " MB");
 
-            bar_circle.setProgressСolor(random, true, getContext());
+            bar_circle.setProgressСolor(random, false, getContext());
             mainActivity.isOptimizationActive = false;
         }else {
+            btn_start.setEnabled(false);
+            bar_circle.setProgressСolor(50, true, getContext());
+            bar_circle.startAnim(8000);
+            setAnimeCircle(4, 0.9f);
             startScan();
         }
     }
@@ -263,7 +269,7 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     }
 
     private void resetState() {
-        btn_start.setEnabled(false);
+
         mJunkGroups = new HashMap<>();
         // mCleanButton.setEnabled(true);
 
@@ -336,9 +342,9 @@ public class JunkCleanerFragment extends BaseFragment implements BaseFragmentInt
     public void basicInit() {
         btn_start = view_root.findViewById(R.id.btn_start);
         starAnimBtn();
-        bar_circle.setProgressСolor(50, true, getContext());
+        /*bar_circle.setProgressСolor(50, true, getContext());
         bar_circle.startAnim(8000);
-        setAnimeCircle(4, 0.9f);
+        setAnimeCircle(4, 0.9f);*/
         resetState();
         checkElement(Util.SHARED_JUNK);
     }
