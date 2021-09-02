@@ -6,11 +6,13 @@ import android.graphics.drawable.Drawable
 import android.os.AsyncTask
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.cleaner.cybercleanerapp.ui.MainActivity
 import java.io.File
 
-class AsyncTaskList(private var activity: AppCompatActivity, var fragment: CPUCoolerFragment) : AsyncTask<Void, Void, Void>() {
+class AsyncTaskList(private var activity: MainActivity, var fragment: CPUCoolerFragment) : AsyncTask<Void, Void, Void>() {
 
     override fun doInBackground(vararg params: Void?): Void? {
+        activity.isOptimizationActive = true
         val pm: PackageManager = activity.packageManager
         val apps = pm.getInstalledApplications(0)
         Log.d("ASYNC", "start")
@@ -40,5 +42,6 @@ class AsyncTaskList(private var activity: AppCompatActivity, var fragment: CPUCo
         if (fragment.installedAppsInfo.size > 1) {
             fragment.setAppsList()
         }
+        activity.isOptimizationActive = false
     }
 }

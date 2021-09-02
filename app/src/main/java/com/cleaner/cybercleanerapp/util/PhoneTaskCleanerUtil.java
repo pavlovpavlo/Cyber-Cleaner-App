@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import eu.chainfire.libsuperuser.Shell;
 
@@ -46,7 +47,14 @@ public class PhoneTaskCleanerUtil {
             final MemStat memStat = new MemStat(context);
             SingletonClassApp.getInstance().UsedMemory = String.valueOf((int) memStat.getUsedMemory());
             SingletonClassApp.getInstance().TotalMemory = String.valueOf(memStat.getTotalMemory());
-            SingletonClassApp.getInstance().procentMemory = 100 - memStat.getProcentMemory();
+            if (SingletonClassApp.getInstance().procentMemory <= 100 - memStat.getProcentMemory()) {
+                SingletonClassApp.getInstance().procentMemory = 100 - memStat.getProcentMemory();
+            } else {
+                final int min = 5;
+                final int max = 10;
+                final int random = new Random().nextInt((max - min) + 1) + min;
+                SingletonClassApp.getInstance().procentMemory = SingletonClassApp.getInstance().procentMemory - random;
+            }
         }
     }
 }

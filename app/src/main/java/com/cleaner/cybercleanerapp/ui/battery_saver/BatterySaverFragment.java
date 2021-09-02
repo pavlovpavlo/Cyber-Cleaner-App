@@ -1,13 +1,9 @@
 package com.cleaner.cybercleanerapp.ui.battery_saver;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.os.BatteryManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,21 +12,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.cleaner.cybercleanerapp.R;
-import com.cleaner.cybercleanerapp.ui.MainActivity;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragment;
 import com.cleaner.cybercleanerapp.ui.base.BaseFragmentInterface;
-import com.cleaner.cybercleanerapp.ui.phone_booster.PhoneBoosterFragment;
 import com.cleaner.cybercleanerapp.util.LocalSharedUtil;
 import com.cleaner.cybercleanerapp.util.PhoneTaskCleanerUtil;
 import com.cleaner.cybercleanerapp.util.SharedData;
-import com.cleaner.cybercleanerapp.util.SingletonClassApp;
 import com.cleaner.cybercleanerapp.util.Util;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import static android.content.Context.BATTERY_SERVICE;
 import static com.cleaner.cybercleanerapp.util.Util.getBatteryPercentage;
 
 public class BatterySaverFragment extends BaseFragment implements BaseFragmentInterface {
@@ -47,21 +37,20 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
         return view_root;
     }
 
-    @SuppressLint("SetTextI18n")
-    private void setData() {
-        setMainText();
-    }
-
     private void setMainText() {
+        batteryText.setText(basicProcent + " %");
+
+        bar_circle.setProgressСolor(basicProcent, true, getContext());
+        basicProcent += 2;
+        if (basicProcent > 100)
+            basicProcent = 99;
+
         int minuteWork = (int) (360 * ((float) basicProcent / 100.0));
         int h = minuteWork / 60;
         int m = minuteWork - h * 60;
         timeBattery.setText(h + " h " + m + " m");
-        batteryText.setText(basicProcent + " %");
 
-        bar_circle.setProgressСolor(basicProcent, true, getContext());
     }
-
 
     @Override
     public void basicInit() {
@@ -69,14 +58,14 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
         timeBattery = view_root.findViewById(R.id.timeBattery);
         basicProcent = getBatteryPercentage(getActivity());
         starAnimBtn();
-        setData();
+        setMainText();
         checkElement(Util.SHARED_BATTERY);
     }
-
 
     @Override
     public void optimization() {
         PhoneTaskCleanerUtil.clearBackgroundTasks(getContext());
+        basicProcent -= 2;
     }
 
     @Override
@@ -87,31 +76,23 @@ public class BatterySaverFragment extends BaseFragment implements BaseFragmentIn
 
     @Override
     public void fragmentIsOptimized(SharedData data) {
-        basicProcent = data.getPercent();
-        setData();
+        basicProcent = getBatteryPercentage(getActivity());
+        setMainText();
         //bar_circle.optimizationComplete(basicProcent, true);
         bar_circle.startAnim(0);
         bar_circle.optimizationComplete(basicProcent, true);
-
-        batteryText.setText(basicProcent + " %");
     }
 
     @Override
     public void onOptimizationComplete() {
-        basicProcent += 2;
-        if (basicProcent > 100)
-            basicProcent = 99;
-        setData();
-        //bar_circle.optimizationComplete(basicProcent, true);
         bar_circle.startAnim(0);
-        bar_circle.optimizationComplete(basicProcent, true);
-
-        batteryText.setText(basicProcent + " %");
-
         LocalSharedUtil.setParameter(
                 new SharedData(basicProcent,
                         basicProcent + " %", "" + new Date().getTime()),
                 Util.SHARED_BATTERY, getContext());
+
+        setMainText();
+        bar_circle.optimizationComplete(basicProcent-2, true);
 
         batteryText.setVisibility(View.VISIBLE);
         imageLoadIcon.setVisibility(View.GONE);

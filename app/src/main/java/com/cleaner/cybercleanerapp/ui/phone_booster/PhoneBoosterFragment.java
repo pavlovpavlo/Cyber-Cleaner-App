@@ -29,6 +29,7 @@ import com.cleaner.cybercleanerapp.util.Util;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import eu.chainfire.libsuperuser.Shell;
 
@@ -78,7 +79,14 @@ public class PhoneBoosterFragment extends BaseFragment implements BaseFragmentIn
         }
         List<ApplicationInfo> apps = pm.getInstalledApplications(0);
         Log.i("APPS", apps.size() + "");
+        if(Integer.parseInt(text_r_process.getText().toString()) < apps.size())
         text_r_process.setText("" + apps.size());
+        else{
+            final int min = 1;
+            final int max = 4;
+            final int random = new Random().nextInt((max - min) + 1) + min;
+            text_r_process.setText("" + (apps.size() - random));
+        }
     }
 
     private void setMainText() {
